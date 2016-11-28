@@ -7,14 +7,14 @@ import java.util.regex.Pattern;
 
 public class Global {
 	
-	public static String MAIN_CONFIG_FILE = "config.yml";
-	public static int MAIN_CONFIG_VERSION = 2;
-	public static String DATABASE_CONFIG_FILE = "database.yml";
-	public static int DATABASE_CONFIG_VERSION = 1;
-	public static String BUNGEE_CONFIG_FILE = "config.yml";
-	public static String GEOIP_DATABASE_FILE = "GeoIP.dat";
+	public static String	BUNGEE_MAIN_PLUGIN_CONFIG_FILE	= "proxysuite.yml";
+	public static int 		BUNGEE_MAIN_CONFIG_VERSION		= 2;
+	public static String	DATABASE_CONFIG_FILE			= "database.yml";
+	public static int 		DATABASE_CONFIG_VERSION			= 1;
+	public static String	BUNGEE_MAIN_CONFIG_FILE			= "config.yml";
+	public static String	GEOIP_DATABASE_FILE				= "GeoIP.dat";
 	
-	public static String CONFNODE_VERSION = "configversion";
+	public static String	CONFNODE_VERSION = "configversion";
 	
 	public static String CONFNODE_MSGCOOLDOWN = "msgcooldown";
 	public static String CONFNODE_NORCVLST = "msgdisabledplayerlist";
