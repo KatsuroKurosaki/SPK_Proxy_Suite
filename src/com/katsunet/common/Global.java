@@ -7,29 +7,34 @@ import java.util.regex.Pattern;
 
 public class Global {
 	
+	// Files and versions
 	public static String	BUNGEE_MAIN_PLUGIN_CONFIG_FILE	= "proxysuite.yml";
 	public static int 		BUNGEE_MAIN_CONFIG_VERSION		= 2;
 	public static String	DATABASE_CONFIG_FILE			= "database.yml";
 	public static int 		DATABASE_CONFIG_VERSION			= 1;
-	public static String	BUNGEE_MAIN_CONFIG_FILE			= "config.yml";
+	public static String	BUNGEE_MAIN_CONFIG_FILE			= "../../config.yml";
 	public static String	GEOIP_DATABASE_FILE				= "GeoIP.dat";
 	
+	// Global nodes
 	public static String	CONFNODE_VERSION = "configversion";
 	
+	// Nodes for proxysuite.yml
 	public static String CONFNODE_MSGCOOLDOWN = "msgcooldown";
 	public static String CONFNODE_NORCVLST = "msgdisabledplayerlist";
 	public static String CONFNODE_CHATSPYLST = "chatspyenabledplayerlist";
 	public static String CONFNODE_HELPOPCLDWN = "helpopcooldown";
 	public static String CONFNODE_LOBBY_SERVER = "lobby.server";
 	public static String CONFNODE_LOBBY_COMMAND = "lobby.command";
-	public static String CONFNODE_DB_DRIVER = "db.driver";
-	public static String CONFNODE_DB_CONN = "db.connection";
-	public static String CONFNODE_DB_USER = "db.user";
-	public static String CONFNODE_DB_PASS = "db.pass";
 	public static String CONFNODE_ANN_DELAY = "announcements.delay";
 	public static String CONFNODE_ANN_PREFIX = "announcements.prefix";
 	public static String CONFNODE_ANN_MSGS = "announcements.messages";
+	// Nodes for database.yml
+	public static String CONFNODE_DB_DRIVER					= "db.driver";
+	public static String CONFNODE_DB_CONN					= "db.connection";
+	public static String CONFNODE_DB_USER					= "db.user";
+	public static String CONFNODE_DB_PASS					= "db.pass";
 	
+	// Permission nodes
 	public static String PERM_CHATSPY = "privatemessage.chatspy";
 	public static String PERM_MSGTOGGLE = "privatemessage.msgtoggle";
 	public static String PERM_MSGTOGGLEIGN = "privatemessage.msgtoggleignore";
@@ -42,7 +47,9 @@ public class Global {
 	public static String PERM_STAFF_CMD = "staff.command";
 	public static String PERM_STAFF_MEMBER = "staff.member";
 	
+	// Other globals
 	public static final Pattern VALID_EMAIL_ADDRESS_REGEX = Pattern.compile("^[_A-Z0-9-\\+]+(\\.[_A-Z0-9-]+)*@[A-Z0-9-]+(\\.[A-Z0-9]+)*(\\.[A-Z]{2,})$",Pattern.CASE_INSENSITIVE);
+	public static final String ANON_PROXY_STR = "Anonymous Proxy";
 	
 	public static int getCurrentTimeSeconds(){
 		return (int) (System.currentTimeMillis() / 1000L);

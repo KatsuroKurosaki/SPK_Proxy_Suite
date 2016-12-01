@@ -7,10 +7,12 @@ public class PostLoginCusEvt extends Event{
 	
 	private ProxiedPlayer player;
 	private String msg;
+	private boolean _kickPlayer;
 	
-	public PostLoginCusEvt(ProxiedPlayer player, String msg){
+	public PostLoginCusEvt(ProxiedPlayer player, String msg, boolean kickPlayer){
 		this.player = player;
 		this.msg=msg;
+		this._kickPlayer=kickPlayer;
 	}
 	
 	public ProxiedPlayer getPlayer(){
@@ -19,6 +21,10 @@ public class PostLoginCusEvt extends Event{
 	
 	public String getMsg(){
 		return this.msg;
+	}
+	
+	public boolean getKickPlayer(){
+		return this._kickPlayer;
 	}
 
 }

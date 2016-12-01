@@ -11,6 +11,7 @@ public class SpkPlayer {
 	private int _lastHelpopMsgTime;
 	private boolean _isLoggedIn;
 	private String _ipaddress;
+	private String _country;
 	
 
 	public int getConnectTime(){
@@ -41,6 +42,10 @@ public class SpkPlayer {
 		return this._ipaddress;
 	}
 	
+	public String getCountry(){
+		return this._country;
+	}
+	
 
 	public void setLastMsgNow() {
 		this._lastMessageTime = Global.getCurrentTimeSeconds();
@@ -62,6 +67,10 @@ public class SpkPlayer {
 		this._isLoggedIn=value;
 	}
 	
+	public void setCountry(String country){
+		this._country = country;
+	}
+	
 	public SpkPlayer(int mcversion, String ipaddress){
 		this._mcversion=mcversion;
 		this._lastMessageTime = Global.getCurrentTimeSeconds();
@@ -80,7 +89,8 @@ public class SpkPlayer {
 			+ "lastMsgSentFrom: "+this._lastMsgSentFrom+", "
 			+ "lastHelpOpMsgTime: "+this._lastHelpopMsgTime+", "
 			+ "isLoggedIn: "+this._isLoggedIn+", "
-			+ "ipaddress: "+this._ipaddress+" "
+			+ "ipaddress: "+this._ipaddress+", "
+			+ "country: "+this._country+" "
 		+ "}";
 	}
 }

@@ -38,7 +38,7 @@ public class ReplyCmd extends Command {
 					} else if(this.plugin.getNoRcvList().contains(arg0.getName()) && !(arg0.hasPermission(Global.PERM_MSGTOGGLEIGN) && receiver.hasPermission(Global.PERM_MSGTOGGLEIGN))){
 						arg0.sendMessage(new TextComponent("[§bMsg§f] Tienes los mensajes privados desactivados. Usa /msgtoggle."));
 					} else {
-						if(p.getLastMessageTime()+this.plugin.getCf().getYaml().getInt(Global.CONFNODE_MSGCOOLDOWN)<=Global.getCurrentTimeSeconds() || arg0.hasPermission(Global.PERM_COOLDOWNIGN)){
+						if(p.getLastMessageTime()+this.plugin.getMainCnf().getYaml().getInt(Global.CONFNODE_MSGCOOLDOWN)<=Global.getCurrentTimeSeconds() || arg0.hasPermission(Global.PERM_COOLDOWNIGN)){
 							StringBuilder strb = new StringBuilder();
 							for(int i=0;i<arg1.length;i++) {
 								strb.append(" "+arg1[i]);
@@ -64,7 +64,7 @@ public class ReplyCmd extends Command {
 							rec.setLastMsgSentFrom(arg0.getName());
 							rec=null;
 						} else {
-							arg0.sendMessage(new TextComponent("[§bMsg§f] Espera "+(p.getLastMessageTime()+this.plugin.getCf().getYaml().getInt(Global.CONFNODE_MSGCOOLDOWN)-Global.getCurrentTimeSeconds())+" segundos, aún no puedes enviar mas mensajes privados."));
+							arg0.sendMessage(new TextComponent("[§bMsg§f] Espera "+(p.getLastMessageTime()+this.plugin.getMainCnf().getYaml().getInt(Global.CONFNODE_MSGCOOLDOWN)-Global.getCurrentTimeSeconds())+" segundos, aún no puedes enviar mas mensajes privados."));
 						}
 					}
 				}

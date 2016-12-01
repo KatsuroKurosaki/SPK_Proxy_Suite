@@ -22,8 +22,8 @@ public class RegisterEvt implements Listener {
 		if(e.getSuccess()){
 			this.plugin.getPlayerList().get(e.getPlayer().getName()).setLoggedIn(true);
 			e.getPlayer().sendMessage(new TextComponent("[§bAuth§f] Te has registrado correctamente! Entrando al lobby..."));
-			if (ProxyServer.getInstance().getServers().containsKey(this.plugin.getCf().getYaml().getString(Global.CONFNODE_LOBBY_SERVER))) {
-				e.getPlayer().connect(ProxyServer.getInstance().getServerInfo(this.plugin.getCf().getYaml().getString(Global.CONFNODE_LOBBY_SERVER)));
+			if (ProxyServer.getInstance().getServers().containsKey(this.plugin.getMainCnf().getYaml().getString(Global.CONFNODE_LOBBY_SERVER))) {
+				e.getPlayer().connect(ProxyServer.getInstance().getServerInfo(this.plugin.getMainCnf().getYaml().getString(Global.CONFNODE_LOBBY_SERVER)));
 			} else {
 				e.getPlayer().sendMessage(new TextComponent("[§bAuth§f] Error: No puedo encontrar el lobby. Contacta al Admin."));
 			}

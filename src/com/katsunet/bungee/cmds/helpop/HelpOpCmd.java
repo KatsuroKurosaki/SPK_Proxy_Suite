@@ -31,7 +31,7 @@ public class HelpOpCmd extends Command {
 				arg0.sendMessage(new TextComponent("[§cHelp§eOP§f] Ya eres parte del staff, no puedes enviarte ayuda a ti mismo."));
 			} else {
 				SpkPlayer p = this.plugin.getPlayerList().get(arg0.getName());
-				if(p.getLastHelpopMsgTime()+this.plugin.getCf().getYaml().getInt(Global.CONFNODE_HELPOPCLDWN)<Global.getCurrentTimeSeconds()){
+				if(p.getLastHelpopMsgTime()+this.plugin.getMainCnf().getYaml().getInt(Global.CONFNODE_HELPOPCLDWN)<Global.getCurrentTimeSeconds()){
 					ProxiedPlayer sender = (ProxiedPlayer) arg0;
 					sender.sendMessage(new TextComponent("[§cHelp§eOP§f] Has solicitado ayuda al Staff."));
 					
@@ -51,7 +51,7 @@ public class HelpOpCmd extends Command {
 					sender=null;
 					p.setLastHelpOpNow();
 				} else {
-					arg0.sendMessage(new TextComponent("[§cHelp§eOP§f] Espera "+(p.getLastHelpopMsgTime()+this.plugin.getCf().getYaml().getInt(Global.CONFNODE_HELPOPCLDWN)-Global.getCurrentTimeSeconds()+1)+" segundos para solicitar ayuda."));
+					arg0.sendMessage(new TextComponent("[§cHelp§eOP§f] Espera "+(p.getLastHelpopMsgTime()+this.plugin.getMainCnf().getYaml().getInt(Global.CONFNODE_HELPOPCLDWN)-Global.getCurrentTimeSeconds()+1)+" segundos para solicitar ayuda."));
 				}
 				p=null;
 			}

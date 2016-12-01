@@ -19,11 +19,11 @@ public class AnnouncementsSch implements Runnable {
 	
 	@Override
 	public void run(){
-		if(this.plugin.getCf().getYaml().getStringList(Global.CONFNODE_ANN_MSGS).size()>0){
-			if(this.plugin.getCf().getYaml().getStringList(Global.CONFNODE_ANN_MSGS).size()<=i){
+		if(this.plugin.getMainCnf().getYaml().getStringList(Global.CONFNODE_ANN_MSGS).size()>0){
+			if(this.plugin.getMainCnf().getYaml().getStringList(Global.CONFNODE_ANN_MSGS).size()<=i){
 				i=0;
 			}
-			TextComponent msg = new TextComponent(this.plugin.getCf().getYaml().getString(Global.CONFNODE_ANN_PREFIX)+this.plugin.getCf().getYaml().getStringList(Global.CONFNODE_ANN_MSGS).get(i));
+			TextComponent msg = new TextComponent(this.plugin.getMainCnf().getYaml().getString(Global.CONFNODE_ANN_PREFIX)+this.plugin.getMainCnf().getYaml().getStringList(Global.CONFNODE_ANN_MSGS).get(i));
 			for (ProxiedPlayer player : ProxyServer.getInstance().getPlayers()) {
 				player.sendMessage(msg);
 			}

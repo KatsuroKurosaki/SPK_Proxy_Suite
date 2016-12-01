@@ -27,8 +27,8 @@ public class MsgtoggleCmd extends Command {
 				this._plugin.getNoRcvList().remove(arg0.getName());
 				arg0.sendMessage(new TextComponent("[§bMsgToggle§f] Mensajes privados activados, puedes hablar con todo el mundo."));
 			}
-			this._plugin.getCf().getYaml().set(Global.CONFNODE_NORCVLST, this._plugin.getNoRcvList());
-			this._plugin.getCf().saveYamlFile();
+			this._plugin.getMainCnf().getYaml().set(Global.CONFNODE_NORCVLST, this._plugin.getNoRcvList());
+			this._plugin.getMainCnf().saveYamlFile();
 		} else {
 			arg0.sendMessage(new TextComponent("Console-tan no puede gestionar la recepción de privados."));
 		}

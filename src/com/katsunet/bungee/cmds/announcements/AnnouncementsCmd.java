@@ -46,7 +46,7 @@ public class AnnouncementsCmd extends Command {
 	}
 	
 	private void list(CommandSender arg0, String[] arg1){
-		List<String> annlst = this.plugin.getCf().getYaml().getStringList(Global.CONFNODE_ANN_MSGS);
+		List<String> annlst = this.plugin.getMainCnf().getYaml().getStringList(Global.CONFNODE_ANN_MSGS);
 		for(int i=0; i<annlst.size();i++){
 			arg0.sendMessage(new TextComponent(i+" : "+annlst.get(i)));
 		}
@@ -61,10 +61,10 @@ public class AnnouncementsCmd extends Command {
 			for(int i=1;i<arg1.length;i++) {
 				strb.append(arg1[i]+" ");
 			}
-			List<String> ann = this.plugin.getCf().getYaml().getStringList(Global.CONFNODE_ANN_MSGS);
+			List<String> ann = this.plugin.getMainCnf().getYaml().getStringList(Global.CONFNODE_ANN_MSGS);
 			ann.add(strb.toString().trim());
-			this.plugin.getCf().getYaml().set(Global.CONFNODE_ANN_MSGS, ann);
-			this.plugin.getCf().saveYamlFile();
+			this.plugin.getMainCnf().getYaml().set(Global.CONFNODE_ANN_MSGS, ann);
+			this.plugin.getMainCnf().saveYamlFile();
 			ann=null;
 			arg0.sendMessage(new TextComponent("[§bAnnouncements§f] Announcement añadido correctamente."));
 		}
@@ -83,10 +83,10 @@ public class AnnouncementsCmd extends Command {
 						for(int i=2;i<arg1.length;i++) {
 							strb.append(arg1[i]+" ");
 						}
-						List<String> ann = this.plugin.getCf().getYaml().getStringList(Global.CONFNODE_ANN_MSGS);
+						List<String> ann = this.plugin.getMainCnf().getYaml().getStringList(Global.CONFNODE_ANN_MSGS);
 						ann.set(Integer.parseInt(arg1[1]), strb.toString().trim());
-						this.plugin.getCf().getYaml().set(Global.CONFNODE_ANN_MSGS, ann);
-						this.plugin.getCf().saveYamlFile();
+						this.plugin.getMainCnf().getYaml().set(Global.CONFNODE_ANN_MSGS, ann);
+						this.plugin.getMainCnf().saveYamlFile();
 						ann=null;
 						arg0.sendMessage(new TextComponent("[§bAnnouncements§f] Announcement editado correctamente."));
 					} catch (IndexOutOfBoundsException ioobe){
@@ -102,10 +102,10 @@ public class AnnouncementsCmd extends Command {
 	private void del(CommandSender arg0, String[] arg1){
 		if(Global.isInt(arg1[1])){
 			try{
-				List<String> ann = this.plugin.getCf().getYaml().getStringList(Global.CONFNODE_ANN_MSGS);
+				List<String> ann = this.plugin.getMainCnf().getYaml().getStringList(Global.CONFNODE_ANN_MSGS);
 				ann.remove(Integer.parseInt(arg1[1]));
-				this.plugin.getCf().getYaml().set(Global.CONFNODE_ANN_MSGS, ann);
-				this.plugin.getCf().saveYamlFile();
+				this.plugin.getMainCnf().getYaml().set(Global.CONFNODE_ANN_MSGS, ann);
+				this.plugin.getMainCnf().saveYamlFile();
 				ann=null;
 				arg0.sendMessage(new TextComponent("[§bAnnouncements§f] Announcement eliminado correctamente."));
 			} catch (IndexOutOfBoundsException ioobe){

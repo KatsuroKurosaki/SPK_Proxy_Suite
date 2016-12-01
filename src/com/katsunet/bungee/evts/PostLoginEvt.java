@@ -10,6 +10,10 @@ public class PostLoginEvt implements Listener{
 	
 	@EventHandler
 	public void onPostLoginCusEvt(PostLoginCusEvt e){
-		e.getPlayer().sendMessage(new TextComponent("[§bAuth§f] "+e.getMsg()));
+		if(e.getKickPlayer()){
+			e.getPlayer().disconnect(new TextComponent(e.getMsg()));
+		} else {
+			e.getPlayer().sendMessage(new TextComponent("[§bAuth§f] "+e.getMsg()));
+		}
 	}
 }

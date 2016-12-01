@@ -21,8 +21,8 @@ public class LoginEvt implements Listener {
 		if(e.getSuccess()){
 			this._plugin.getPlayerList().get(e.getPlayer().getName()).setLoggedIn(true);
 			e.getPlayer().sendMessage(new TextComponent("[§bAuth§f] Te has conectado correctamente! Entrando al lobby..."));
-			if (ProxyServer.getInstance().getServers().containsKey(this._plugin.getCf().getYaml().getString(Global.CONFNODE_LOBBY_SERVER))) {
-				e.getPlayer().connect(ProxyServer.getInstance().getServerInfo(this._plugin.getCf().getYaml().getString(Global.CONFNODE_LOBBY_SERVER)));
+			if (ProxyServer.getInstance().getServers().containsKey(this._plugin.getMainCnf().getYaml().getString(Global.CONFNODE_LOBBY_SERVER))) {
+				e.getPlayer().connect(ProxyServer.getInstance().getServerInfo(this._plugin.getMainCnf().getYaml().getString(Global.CONFNODE_LOBBY_SERVER)));
 			} else {
 				e.getPlayer().sendMessage(new TextComponent("[§bAuth§f] Error: No puedo encontrar el lobby. Contacta al Admin."));
 			}

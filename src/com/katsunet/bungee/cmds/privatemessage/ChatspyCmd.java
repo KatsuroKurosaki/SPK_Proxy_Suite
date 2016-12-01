@@ -27,8 +27,8 @@ public class ChatspyCmd extends Command {
 				this.plugin.getChatspyList().remove(arg0.getName());
 				arg0.sendMessage(new TextComponent("[§bSpy§f] Has desactivado el ChatSpy"));
 			}
-			this.plugin.getCf().getYaml().set(Global.CONFNODE_CHATSPYLST, this.plugin.getChatspyList());
-			this.plugin.getCf().saveYamlFile();
+			this.plugin.getMainCnf().getYaml().set(Global.CONFNODE_CHATSPYLST, this.plugin.getChatspyList());
+			this.plugin.getMainCnf().saveYamlFile();
 		} else {
 			arg0.sendMessage(new TextComponent("Console-tan no puede espiar mensajes privados."));
 		}

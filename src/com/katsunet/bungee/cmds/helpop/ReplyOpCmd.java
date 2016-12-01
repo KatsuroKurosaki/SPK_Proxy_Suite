@@ -32,7 +32,7 @@ public class ReplyOpCmd extends Command {
 						strb.append(" "+arg1[i]);
 					}
 					receiver.sendMessage(new TextComponent("[§bReply§eOP§f] Te ayuda '"+arg0.getName()+"'."+strb.toString()));
-					this.plugin.getPlayerList().get(receiver.getName()).setLastHelpOpTime(Global.getCurrentTimeSeconds()-this.plugin.getCf().getYaml().getInt(Global.CONFNODE_HELPOPCLDWN));
+					this.plugin.getPlayerList().get(receiver.getName()).setLastHelpOpTime(Global.getCurrentTimeSeconds()-this.plugin.getMainCnf().getYaml().getInt(Global.CONFNODE_HELPOPCLDWN));
 					
 					for (ProxiedPlayer player : ProxyServer.getInstance().getPlayers()) {
 						if (player.hasPermission(Global.PERM_HELPOP)){
