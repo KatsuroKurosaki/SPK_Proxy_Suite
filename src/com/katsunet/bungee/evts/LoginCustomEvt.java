@@ -1,6 +1,6 @@
 package com.katsunet.bungee.evts;
 
-import com.katsunet.bungee.evts.custom.LoginCusEvt;
+import com.katsunet.bungee.evts.custom.LoginCustomEvent;
 import com.katsunet.common.Global;
 import com.katsunet.spkproxysuite.bungee.Main;
 
@@ -9,15 +9,15 @@ import net.md_5.bungee.api.chat.TextComponent;
 import net.md_5.bungee.api.plugin.Listener;
 import net.md_5.bungee.event.EventHandler;
 
-public class LoginEvt implements Listener {
+public class LoginCustomEvt implements Listener {
 	private Main _plugin;
 	
-	public LoginEvt(Main plugin){
+	public LoginCustomEvt(Main plugin){
 		this._plugin=plugin;
 	}
 	
 	@EventHandler
-	public void onLogin(LoginCusEvt e){
+	public void onLogin(LoginCustomEvent e){
 		if(e.getSuccess()){
 			this._plugin.getPlayerList().get(e.getPlayer().getName()).setLoggedIn(true);
 			e.getPlayer().sendMessage(new TextComponent("[§bAuth§f] Te has conectado correctamente! Entrando al lobby..."));

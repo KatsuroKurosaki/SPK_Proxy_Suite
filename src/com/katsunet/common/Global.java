@@ -28,6 +28,8 @@ public class Global {
 	public static String CONFNODE_ANN_DELAY = "announcements.delay";
 	public static String CONFNODE_ANN_PREFIX = "announcements.prefix";
 	public static String CONFNODE_ANN_MSGS = "announcements.messages";
+	public static String CONFNODE_CMDHIDE_UNKNOWN			= "commandhider.unknowncmdmsg";
+	public static String CONFNODE_CMDHIDE_CMDLIST			= "commandhider.hiddencommands";
 	// Nodes for database.yml
 	public static String CONFNODE_DB_DRIVER					= "db.driver";
 	public static String CONFNODE_DB_CONN					= "db.connection";

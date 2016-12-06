@@ -4,7 +4,7 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 
-import com.katsunet.bungee.evts.custom.ChangePwCusEvt;
+import com.katsunet.bungee.evts.custom.ChangePasswordCustomEvent;
 import com.katsunet.common.Global;
 import com.katsunet.spkproxysuite.bungee.Main;
 
@@ -48,25 +48,25 @@ public class ChangePwAsync implements Runnable {
 						ps.setString(3, this.player.getName());
 						ps.executeUpdate();
 						ps.close();
-						this.plugin.getProxy().getPluginManager().callEvent(new ChangePwCusEvt(true, this.player,""));
+						this.plugin.getProxy().getPluginManager().callEvent(new ChangePasswordCustomEvent(true, this.player,""));
 					} else {
-						this.plugin.getProxy().getPluginManager().callEvent(new ChangePwCusEvt(false, this.player,"La contraseña que has escrito no es correcta."));
+						this.plugin.getProxy().getPluginManager().callEvent(new ChangePasswordCustomEvent(false, this.player,"La contraseña que has escrito no es correcta."));
 					}
 				}else{
 					
-					this.plugin.getProxy().getPluginManager().callEvent(new ChangePwCusEvt(false, this.player,"Se ha producido un error desconocido. Contacta con el Admin"));
+					this.plugin.getProxy().getPluginManager().callEvent(new ChangePasswordCustomEvent(false, this.player,"Se ha producido un error desconocido. Contacta con el Admin"));
 				}
 				rs.close();
 				ps.close();
 			} catch (SQLException e) {
-				this.plugin.getProxy().getPluginManager().callEvent(new ChangePwCusEvt(false, this.player,"Se ha producido un error al cambiar la contraseña. Contacta con el Admin."));
+				this.plugin.getProxy().getPluginManager().callEvent(new ChangePasswordCustomEvent(false, this.player,"Se ha producido un error al cambiar la contraseña. Contacta con el Admin."));
 				e.printStackTrace();
 			} finally {
 				if(ps != null){
 					try {
 						ps.close();
 					} catch (SQLException e) {
-						this.plugin.getProxy().getPluginManager().callEvent(new ChangePwCusEvt(false, this.player,"Se ha producido un error al cambiar la contraseña. Contacta con el Admin."));
+						this.plugin.getProxy().getPluginManager().callEvent(new ChangePasswordCustomEvent(false, this.player,"Se ha producido un error al cambiar la contraseña. Contacta con el Admin."));
 						e.printStackTrace();
 					}
 					ps = null;
@@ -75,7 +75,7 @@ public class ChangePwAsync implements Runnable {
 			ps=null;
 			this.plugin.getMysql().disconnect();
 		} else {
-			this.plugin.getProxy().getPluginManager().callEvent(new ChangePwCusEvt(false, this.player,"Se ha producido un error al cambiar la contraseña. Contacta con el Admin."));
+			this.plugin.getProxy().getPluginManager().callEvent(new ChangePasswordCustomEvent(false, this.player,"Se ha producido un error al cambiar la contraseña. Contacta con el Admin."));
 		}
 	}
 	

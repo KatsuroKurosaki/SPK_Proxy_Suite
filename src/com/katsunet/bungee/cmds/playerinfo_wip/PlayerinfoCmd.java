@@ -19,7 +19,13 @@ public class PlayerinfoCmd extends Command {
 	public void execute(CommandSender arg0, String[] arg1) {
 		this.plugin.getMainCnf();
 		arg0.sendMessage(new TextComponent("Not yet implemented."));
-		/*if(arg1.length==0){
+		/*
+		 * TextComponent message = new TextComponent( "Click me" );
+		message.setClickEvent( new ClickEvent( ClickEvent.Action.OPEN_URL, "http://spigotmc.org" ) );
+		message.setHoverEvent( new HoverEvent( HoverEvent.Action.SHOW_TEXT, new ComponentBuilder("Goto the Spigot website!").create() ) );
+		player.spigot().sendMessage( message );
+		 * 
+		 * if(arg1.length==0){
 			this.info(arg0,arg1);
 		} else if(arg1[0].equals("list")){
 			this.list(arg0, arg1);

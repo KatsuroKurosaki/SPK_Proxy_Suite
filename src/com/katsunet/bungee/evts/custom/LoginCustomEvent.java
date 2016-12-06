@@ -3,13 +3,13 @@ package com.katsunet.bungee.evts.custom;
 import net.md_5.bungee.api.connection.ProxiedPlayer;
 import net.md_5.bungee.api.plugin.Event;
 
-public class ChangePwCusEvt extends Event {
+public class LoginCustomEvent extends Event {
 
 	private boolean success;
 	private ProxiedPlayer player;
 	private String msg;
 	
-	public ChangePwCusEvt(boolean success, ProxiedPlayer player, String msg){
+	public LoginCustomEvent(boolean success, ProxiedPlayer player, String msg){
 		this.success=success;
 		this.player = player;
 		this.msg=msg;

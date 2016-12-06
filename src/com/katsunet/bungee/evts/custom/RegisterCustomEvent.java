@@ -3,13 +3,13 @@ package com.katsunet.bungee.evts.custom;
 import net.md_5.bungee.api.connection.ProxiedPlayer;
 import net.md_5.bungee.api.plugin.Event;
 
-public class RegisterCusEvt extends Event {
+public class RegisterCustomEvent extends Event {
 	
 	private boolean success;
 	private ProxiedPlayer player;
 	private String msg;
 	
-	public RegisterCusEvt(boolean success, ProxiedPlayer player, String msg){
+	public RegisterCustomEvent(boolean success, ProxiedPlayer player, String msg){
 		this.success=success;
 		this.player = player;
 		this.msg=msg;

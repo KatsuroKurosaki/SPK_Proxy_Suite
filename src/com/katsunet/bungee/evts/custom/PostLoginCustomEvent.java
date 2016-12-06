@@ -3,20 +3,16 @@ package com.katsunet.bungee.evts.custom;
 import net.md_5.bungee.api.connection.ProxiedPlayer;
 import net.md_5.bungee.api.plugin.Event;
 
-public class LoginCusEvt extends Event {
-
-	private boolean success;
+public class PostLoginCustomEvent extends Event{
+	
 	private ProxiedPlayer player;
 	private String msg;
+	private boolean _kickPlayer;
 	
-	public LoginCusEvt(boolean success, ProxiedPlayer player, String msg){
-		this.success=success;
+	public PostLoginCustomEvent(ProxiedPlayer player, String msg, boolean kickPlayer){
 		this.player = player;
 		this.msg=msg;
-	}
-	
-	public boolean getSuccess(){
-		return this.success;
+		this._kickPlayer=kickPlayer;
 	}
 	
 	public ProxiedPlayer getPlayer(){
@@ -26,4 +22,9 @@ public class LoginCusEvt extends Event {
 	public String getMsg(){
 		return this.msg;
 	}
+	
+	public boolean getKickPlayer(){
+		return this._kickPlayer;
+	}
+
 }

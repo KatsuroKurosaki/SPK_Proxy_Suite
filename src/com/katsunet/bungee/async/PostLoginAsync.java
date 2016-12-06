@@ -4,7 +4,7 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 
-import com.katsunet.bungee.evts.custom.PostLoginCusEvt;
+import com.katsunet.bungee.evts.custom.PostLoginCustomEvent;
 import com.katsunet.common.Global;
 import com.katsunet.spkproxysuite.bungee.Main;
 
@@ -37,21 +37,21 @@ public class PostLoginAsync implements Runnable{
 					ps.setString(1, this.player.getName());
 					rs = ps.executeQuery();
 					if (rs.isBeforeFirst() ) {
-						this.plugin.getProxy().getPluginManager().callEvent(new PostLoginCusEvt(this.player,"Bienvenido de nuevo "+this.player.getName()+", conectate con: /login <contraseña>",false));
+						this.plugin.getProxy().getPluginManager().callEvent(new PostLoginCustomEvent(this.player,"Bienvenido de nuevo "+this.player.getName()+", conectate con: /login <contraseña>",false));
 					}else{
-						this.plugin.getProxy().getPluginManager().callEvent(new PostLoginCusEvt(this.player,"Bienvenido al server, registrate con /register <contraseña> <email>",false));
+						this.plugin.getProxy().getPluginManager().callEvent(new PostLoginCustomEvent(this.player,"Bienvenido al server, registrate con /register <contraseña> <email>",false));
 					}
 					rs.close();
 					ps.close();
 				} catch (SQLException e) {
-					this.plugin.getProxy().getPluginManager().callEvent(new PostLoginCusEvt(this.player,"Se ha producido un error en el server. Contacta con el Admin.",false));
+					this.plugin.getProxy().getPluginManager().callEvent(new PostLoginCustomEvent(this.player,"Se ha producido un error en el server. Contacta con el Admin.",false));
 					e.printStackTrace();
 				} finally {
 					if(ps != null){
 						try {
 							ps.close();
 						} catch (SQLException e) {
-							this.plugin.getProxy().getPluginManager().callEvent(new PostLoginCusEvt(this.player,"Se ha producido un error en el server. Contacta con el Admin.",false));
+							this.plugin.getProxy().getPluginManager().callEvent(new PostLoginCustomEvent(this.player,"Se ha producido un error en el server. Contacta con el Admin.",false));
 							e.printStackTrace();
 						}
 						ps = null;
@@ -60,10 +60,10 @@ public class PostLoginAsync implements Runnable{
 				ps=null;
 				this.plugin.getMysql().disconnect();
 			} else {
-				this.plugin.getProxy().getPluginManager().callEvent(new PostLoginCusEvt(this.player,"Se ha producido un error en el server. Contacta con el Admin.",false));
+				this.plugin.getProxy().getPluginManager().callEvent(new PostLoginCustomEvent(this.player,"Se ha producido un error en el server. Contacta con el Admin.",false));
 			}
 		} else {
-			this.plugin.getProxy().getPluginManager().callEvent(new PostLoginCusEvt(this.player,"La conexión al server usando un proxy está prohibida.",true));
+			this.plugin.getProxy().getPluginManager().callEvent(new PostLoginCustomEvent(this.player,"La conexión al server usando un proxy está prohibida.",true));
 		}
 	}
 }

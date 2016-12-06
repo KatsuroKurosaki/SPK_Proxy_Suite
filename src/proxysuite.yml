@@ -22,11 +22,10 @@ lobby:
 
 # Hidden commands
 commandhider:
-  unknowncmdmsg: 'Unknown command. Ask the server owner for help.'
+  unknowncmdmsg: 'Unknown command. Type "/help" for help.'
   hiddencommands:
   - "?"
   - "about"
-  - "ehelp"
   - "pl"
   - "plugins"
   - "ver"

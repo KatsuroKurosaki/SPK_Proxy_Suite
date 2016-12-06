@@ -4,7 +4,7 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 
-import com.katsunet.bungee.evts.custom.RegisterCusEvt;
+import com.katsunet.bungee.evts.custom.RegisterCustomEvent;
 import com.katsunet.common.Global;
 import com.katsunet.spkproxysuite.bungee.Main;
 
@@ -39,9 +39,9 @@ public class RegisterAsync implements Runnable{
 				if (rs.isBeforeFirst() ) {
 					rs.next();
 					if(rs.getString("email").equals(this.email) && !rs.getString("playername").equals(this.player.getName())){
-						this.plugin.getProxy().getPluginManager().callEvent(new RegisterCusEvt(false, this.player,"El email que has escrito, ya existe en el server."));
+						this.plugin.getProxy().getPluginManager().callEvent(new RegisterCustomEvent(false, this.player,"El email que has escrito, ya existe en el server."));
 					} else {
-						this.plugin.getProxy().getPluginManager().callEvent(new RegisterCusEvt(false, this.player,"Ya tienes una contraseña, conectate con: /login <contraseña>"));
+						this.plugin.getProxy().getPluginManager().callEvent(new RegisterCustomEvent(false, this.player,"Ya tienes una contraseña, conectate con: /login <contraseña>"));
 					}
 				}else{
 					ps.close();
@@ -58,19 +58,19 @@ public class RegisterAsync implements Runnable{
 					ps.setString(7, this.player.getAddress().getAddress().getHostAddress());
 					ps.executeUpdate();
 					ps.close();
-					this.plugin.getProxy().getPluginManager().callEvent(new RegisterCusEvt(true, this.player,""));
+					this.plugin.getProxy().getPluginManager().callEvent(new RegisterCustomEvent(true, this.player,""));
 				}
 				rs.close();
 				ps.close();
 			} catch (SQLException e) {
-				this.plugin.getProxy().getPluginManager().callEvent(new RegisterCusEvt(false, this.player,"Se ha producido un error al registrar tu cuenta. Contacta con el Admin."));
+				this.plugin.getProxy().getPluginManager().callEvent(new RegisterCustomEvent(false, this.player,"Se ha producido un error al registrar tu cuenta. Contacta con el Admin."));
 				e.printStackTrace();
 			} finally {
 				if(ps != null){
 					try {
 						ps.close();
 					} catch (SQLException e) {
-						this.plugin.getProxy().getPluginManager().callEvent(new RegisterCusEvt(false, this.player,"Se ha producido un error al registrar tu cuenta. Contacta con el Admin."));
+						this.plugin.getProxy().getPluginManager().callEvent(new RegisterCustomEvent(false, this.player,"Se ha producido un error al registrar tu cuenta. Contacta con el Admin."));
 						e.printStackTrace();
 					}
 					ps = null;
@@ -79,7 +79,7 @@ public class RegisterAsync implements Runnable{
 			ps=null;
 			this.plugin.getMysql().disconnect();
 		} else {
-			this.plugin.getProxy().getPluginManager().callEvent(new RegisterCusEvt(false, this.player,"Se ha producido un error al registrar tu cuenta. Contacta con el Admin."));
+			this.plugin.getProxy().getPluginManager().callEvent(new RegisterCustomEvent(false, this.player,"Se ha producido un error al registrar tu cuenta. Contacta con el Admin."));
 		}
 	}
 

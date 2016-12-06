@@ -1,6 +1,6 @@
 package com.katsunet.bungee.evts;
 
-import com.katsunet.bungee.evts.custom.RegisterCusEvt;
+import com.katsunet.bungee.evts.custom.RegisterCustomEvent;
 import com.katsunet.common.Global;
 import com.katsunet.spkproxysuite.bungee.Main;
 
@@ -9,16 +9,16 @@ import net.md_5.bungee.api.chat.TextComponent;
 import net.md_5.bungee.api.plugin.Listener;
 import net.md_5.bungee.event.EventHandler;
 
-public class RegisterEvt implements Listener {
+public class RegisterCustomEvt implements Listener {
 	
 	private Main plugin;
 	
-	public RegisterEvt(Main plugin){
+	public RegisterCustomEvt(Main plugin){
 		this.plugin=plugin;
 	}
 	
 	@EventHandler
-	public void onRegisterEvent(RegisterCusEvt e){
+	public void onRegisterEvent(RegisterCustomEvent e){
 		if(e.getSuccess()){
 			this.plugin.getPlayerList().get(e.getPlayer().getName()).setLoggedIn(true);
 			e.getPlayer().sendMessage(new TextComponent("[§bAuth§f] Te has registrado correctamente! Entrando al lobby..."));
