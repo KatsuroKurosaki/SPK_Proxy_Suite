@@ -41,7 +41,7 @@ public class Global {
 	public static String PERM_MSGTOGGLE = "privatemessage.msgtoggle";
 	public static String PERM_MSGTOGGLEIGN = "privatemessage.msgtoggleignore";
 	public static String PERM_COOLDOWNIGN = "privatemessage.cooldownignore";
-	public static String PERM_DEBUGGER = "spkproxysuite.debug";
+	public static String PERM_DEBUGGER						= "spkproxysuite.debug";
 	public static String PERM_HELPOP = "helpop.staff";
 	public static String PERM_BGCVIEW = "bgc.view";
 	public static String PERM_BGCFREE = "bgc.free";
