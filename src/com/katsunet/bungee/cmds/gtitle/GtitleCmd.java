@@ -1,4 +1,4 @@
-package com.katsunet.bungee.cmds.gtitle_wip;
+package com.katsunet.bungee.cmds.gtitle;
 
 import com.katsunet.common.Global;
 import com.katsunet.spkproxysuite.bungee.Main;

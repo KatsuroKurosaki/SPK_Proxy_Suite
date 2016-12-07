@@ -13,7 +13,7 @@ import com.katsunet.bungee.cmds.auth.RegisterCmd;
 import com.katsunet.bungee.cmds.bgc.BgcCmd;
 import com.katsunet.bungee.cmds.commandhider.CommandHider;
 import com.katsunet.bungee.cmds.debug.DebugCmd;
-import com.katsunet.bungee.cmds.gtitle_wip.GtitleCmd;
+import com.katsunet.bungee.cmds.gtitle.GtitleCmd;
 import com.katsunet.bungee.cmds.helpop.HelpOpCmd;
 import com.katsunet.bungee.cmds.helpop.ReplyOpCmd;
 import com.katsunet.bungee.cmds.info.ICmd;
