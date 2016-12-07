@@ -23,8 +23,9 @@ public class Global {
 	public static String CONFNODE_NORCVLST = "msgdisabledplayerlist";
 	public static String CONFNODE_CHATSPYLST = "chatspyenabledplayerlist";
 	public static String CONFNODE_HELPOPCLDWN = "helpopcooldown";
-	public static String CONFNODE_LOBBY_SERVER = "lobby.server";
-	public static String CONFNODE_LOBBY_COMMAND = "lobby.command";
+	public static String CONFNODE_LOBBY_SERVER				= "lobby.server";
+	public static String CONFNODE_LOBBY_COMMAND				= "lobby.command";
+	public static String CONFNODE_LOBBY_COMMANDALIAS		= "lobby.alias";
 	public static String CONFNODE_ANN_DELAY = "announcements.delay";
 	public static String CONFNODE_ANN_PREFIX = "announcements.prefix";
 	public static String CONFNODE_ANN_MSGS = "announcements.messages";

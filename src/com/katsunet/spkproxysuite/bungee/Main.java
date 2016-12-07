@@ -17,6 +17,7 @@ import com.katsunet.bungee.cmds.gtitle_wip.GtitleCmd;
 import com.katsunet.bungee.cmds.helpop.HelpOpCmd;
 import com.katsunet.bungee.cmds.helpop.ReplyOpCmd;
 import com.katsunet.bungee.cmds.info.ICmd;
+import com.katsunet.bungee.cmds.lobby.LobbyCmd;
 import com.katsunet.bungee.cmds.ping.PingCmd;
 import com.katsunet.bungee.cmds.privatemessage.ChatspyCmd;
 import com.katsunet.bungee.cmds.privatemessage.MessageCmd;
@@ -141,7 +142,7 @@ public class Main extends Plugin {
 		this.getProxy().getPluginManager().registerCommand(this, new BgcCmd());
 		
 		// Back to lobby command
-		//this.getProxy().getPluginManager().registerCommand(this, new LobbyCmd(this));
+		this.getProxy().getPluginManager().registerCommand(this, new LobbyCmd(this));
 		
 		// Announcements admin
 		this.getProxy().getPluginManager().registerCommand(this, new AnnouncementsCmd(this));

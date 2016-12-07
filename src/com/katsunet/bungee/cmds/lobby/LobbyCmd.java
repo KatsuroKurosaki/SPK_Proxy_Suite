@@ -14,7 +14,7 @@ public class LobbyCmd extends Command{
 	private Main plugin;
 	
 	public LobbyCmd(Main plugin){
-		super(plugin.getMainCnf().getYaml().getString(Global.CONFNODE_LOBBY_COMMAND));
+		super(plugin.getMainCnf().getYaml().getString(Global.CONFNODE_LOBBY_COMMAND),"",plugin.getMainCnf().getYaml().getStringList(Global.CONFNODE_LOBBY_COMMANDALIAS).stream().toArray(String[]::new));
 		this.plugin = plugin;
 	}
 	
