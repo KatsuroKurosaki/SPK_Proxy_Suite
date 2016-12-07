@@ -9,15 +9,15 @@ import net.md_5.bungee.api.plugin.Command;
 
 public class CommandHider extends Command {
 	
-	private TextComponent errormsg;
+	private TextComponent _errormsg;
 	
 	public CommandHider(Main plugin){
 		super("commandhider", "", plugin.getMainCnf().getYaml().getStringList(Global.CONFNODE_CMDHIDE_CMDLIST).stream().toArray(String[]::new));
-		this.errormsg = new TextComponent(plugin.getMainCnf().getYaml().getString(Global.CONFNODE_CMDHIDE_UNKNOWN));
+		this._errormsg = new TextComponent(plugin.getMainCnf().getYaml().getString(Global.CONFNODE_CMDHIDE_UNKNOWN));
 	}
 	
 	@Override
 	public void execute(CommandSender arg0, String[] arg1) {
-		arg0.sendMessage(this.errormsg);
+		arg0.sendMessage(this._errormsg);
 	}
 }
