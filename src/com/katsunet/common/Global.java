@@ -46,8 +46,8 @@ public class Global {
 	public static String PERM_BGCVIEW = "bgc.view";
 	public static String PERM_BGCFREE = "bgc.free";
 	public static String PERM_ANNOUNCEMENTS = "announcements.admin";
-	public static String PERM_STAFF_CMD = "staff.command";
-	public static String PERM_STAFF_MEMBER = "staff.member";
+	public static String PERM_STAFF_CMD						= "spkproxysuite.staffcommand";
+	public static String PERM_STAFF_MEMBER					= "spkproxysuite.staffmember";
 	
 	// Other globals
 	public static final Pattern VALID_EMAIL_ADDRESS_REGEX = Pattern.compile("^[_A-Z0-9-\\+]+(\\.[_A-Z0-9-]+)*@[A-Z0-9-]+(\\.[A-Z0-9]+)*(\\.[A-Z]{2,})$",Pattern.CASE_INSENSITIVE);
@@ -59,6 +59,10 @@ public class Global {
 	
 	public static String generateRandomUuidString(){
 		return UUID.randomUUID().toString();
+	}
+	
+	public static String fixedLengthString(String string, int length) {
+	    return String.format("%1$"+length+ "s", string);
 	}
 	
 	public static String whirlpoolEncode(String input){

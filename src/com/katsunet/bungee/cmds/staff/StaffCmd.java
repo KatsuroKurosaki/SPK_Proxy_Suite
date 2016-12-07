@@ -19,7 +19,7 @@ public class StaffCmd extends Command{
 		arg0.sendMessage(new TextComponent("[§bSTAFF§f] Miembros del Staff online:"));
 		for (ProxiedPlayer player : ProxyServer.getInstance().getPlayers()) {
 			if (player.hasPermission(Global.PERM_STAFF_MEMBER)){
-				arg0.sendMessage(new TextComponent(player.getName()+" en "+player.getServer().getInfo().getName()+"."));
+				arg0.sendMessage(new TextComponent("§c"+Global.fixedLengthString(player.getName(),16)+" §f-> §9"+player.getServer().getInfo().getName()));
 			}
 		}
 	}
