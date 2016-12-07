@@ -13,6 +13,9 @@ chatspyenabledplayerlist: []
 # HelpOp cooldown in seconds
 helpopcooldown: 120
 
+# Grace time to login before autokick
+logingracetime: 60
+
 # Gtitle timings
 gtitle:
   fadetime: 1
@@ -29,26 +32,26 @@ lobby:
 commandhider:
   unknowncmdmsg: 'Unknown command. Type "/help" for help.'
   hiddencommands:
-  - "?"
-  - "about"
-  - "pl"
-  - "plugins"
-  - "ver"
-  - "version"
-  - "minecraft:help"
-  - "minecraft:me"
-  - "bukkit:?"
-  - "bukkit:about"
-  - "bukkit:help"
-  - "bukkit:pl"
-  - "bukkit:plugins"
-  - "bukkit:ver"
-  - "bukkit:version"
+  - '?'
+  - 'about'
+  - 'pl'
+  - 'plugins'
+  - 'ver'
+  - 'version'
+  - 'minecraft:help'
+  - 'minecraft:me'
+  - 'bukkit:?'
+  - 'bukkit:about'
+  - 'bukkit:help'
+  - 'bukkit:pl'
+  - 'bukkit:plugins'
+  - 'bukkit:ver'
+  - 'bukkit:version'
 
 # Announcements.
 announcements:
   delay: 300
   prefix: '[Server] '
   messages:
-  - Hello
-  - World
+  - 'Hello'
+  - 'World'

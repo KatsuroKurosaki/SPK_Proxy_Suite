@@ -1,30 +1,28 @@
 package com.katsunet.bungee.scheduler;
 
+import com.katsunet.classes.SpkPlayer;
+import com.katsunet.common.Global;
 import com.katsunet.spkproxysuite.bungee.Main;
+
+import net.md_5.bungee.api.ProxyServer;
+import net.md_5.bungee.api.chat.TextComponent;
 
 public class PlayerKickerSch implements Runnable {
 
 	private Main plugin;
-	//private int i;
 	
 	public PlayerKickerSch(Main plugin){
-		//this.i=0;
 		this.plugin = plugin;
 	}
 	
 	@Override
 	public void run(){
 		System.out.println("Player kicker executed.");
-		/*if(this.plugin.getMainCnf().getYaml().getStringList(Global.CONFNODE_ANN_MSGS).size()>0){
-			if(this.plugin.getMainCnf().getYaml().getStringList(Global.CONFNODE_ANN_MSGS).size()<=i){
-				i=0;
+		for (String playername : this.plugin.getPlayerList().keySet()){
+			SpkPlayer spk = this.plugin.getPlayerList().get(playername);
+			if(!spk.getIsLoggedIn() && Global.getCurrentTimeSeconds()> spk.getConnectTime()+this.plugin.getMainCnf().getYaml().getInt(Global.CONFNODE_LOGIN_GRACE_TIME)){
+				ProxyServer.getInstance().getPlayer(playername).disconnect(new TextComponent("Has tardado mas de "+this.plugin.getMainCnf().getYaml().getInt(Global.CONFNODE_LOGIN_GRACE_TIME)+" segundos en conectarte."));
 			}
-			TextComponent msg = new TextComponent(this.plugin.getMainCnf().getYaml().getString(Global.CONFNODE_ANN_PREFIX)+this.plugin.getMainCnf().getYaml().getStringList(Global.CONFNODE_ANN_MSGS).get(i));
-			for (ProxiedPlayer player : ProxyServer.getInstance().getPlayers()) {
-				player.sendMessage(msg);
-			}
-			i++;
-			msg = null;
-		}*/
+		}
 	}
 }

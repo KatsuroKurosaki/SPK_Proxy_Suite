@@ -185,7 +185,7 @@ public class Main extends Plugin {
 		
 		// Scheduled repeating tasks
 		this.getProxy().getScheduler().schedule(this, new AnnouncementsSch(this), this._mainCnf.getYaml().getInt(Global.CONFNODE_ANN_DELAY), _mainCnf.getYaml().getInt(Global.CONFNODE_ANN_DELAY),TimeUnit.SECONDS);
-		this.getProxy().getScheduler().schedule(this, new PlayerKickerSch(this), 60, 60, TimeUnit.SECONDS);
+		this.getProxy().getScheduler().schedule(this, new PlayerKickerSch(this), this._mainCnf.getYaml().getInt(Global.CONFNODE_LOGIN_GRACE_TIME), this._mainCnf.getYaml().getInt(Global.CONFNODE_LOGIN_GRACE_TIME), TimeUnit.SECONDS);
 		
 		// Complete!
 		this.getLogger().info("SPK Proxy Suite started.");

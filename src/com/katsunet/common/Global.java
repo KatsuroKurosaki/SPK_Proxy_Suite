@@ -23,6 +23,7 @@ public class Global {
 	public static String CONFNODE_NORCVLST = "msgdisabledplayerlist";
 	public static String CONFNODE_CHATSPYLST = "chatspyenabledplayerlist";
 	public static String CONFNODE_HELPOPCLDWN = "helpopcooldown";
+	public static String CONFNODE_LOGIN_GRACE_TIME			= "logingracetime";
 	public static String CONFNODE_GTITLE_FADE 				= "gtitle.fadetime";
 	public static String CONFNODE_GTITLE_STAY 				= "gtitle.staytime";
 	public static String CONFNODE_LOBBY_SERVER				= "lobby.server";
