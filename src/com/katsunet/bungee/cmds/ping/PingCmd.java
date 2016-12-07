@@ -17,16 +17,16 @@ public class PingCmd extends Command {
 		if (args.length == 0) {
 			if ((sender instanceof ProxiedPlayer)) {
 				ProxiedPlayer player = (ProxiedPlayer) sender;
-				sender.sendMessage(new TextComponent("[§bPING§f] PING: "+PingCmd.responseColor(player.getPing()) + player.getPing() + " ms."));
+				sender.sendMessage(new TextComponent("[§bPING§f] PING: "+PingCmd.responseColor(player.getPing()) + player.getPing() + " ms"));
 			} else {
-				sender.sendMessage(new TextComponent("[§bPING§f] Console-tan no tiene ping."));
+				sender.sendMessage(new TextComponent("[§bPING§f] Console-tan no tiene ping"));
 			}
 		} else {
 			ProxiedPlayer player = ProxyServer.getInstance().getPlayer(args[0]);
 			if (player != null) {
-				sender.sendMessage(new TextComponent("[§bPING§f] PING de " + args[0] + ": " + PingCmd.responseColor(player.getPing()) + player.getPing() + " ms."));
+				sender.sendMessage(new TextComponent("[§bPING§f] PING de " + args[0] + ": " + PingCmd.responseColor(player.getPing()) + player.getPing() + " ms"));
 			} else {
-				sender.sendMessage(new TextComponent("[§bPING§f] PING de " + args[0] + ": Desconectado."));
+				sender.sendMessage(new TextComponent("[§bPING§f] PING de " + args[0] + ": Desconectado"));
 			}
 		}
 	}
