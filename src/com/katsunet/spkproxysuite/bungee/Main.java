@@ -11,14 +11,18 @@ import com.katsunet.bungee.cmds.auth.ChangePwCmd;
 import com.katsunet.bungee.cmds.auth.LoginCmd;
 import com.katsunet.bungee.cmds.auth.RegisterCmd;
 import com.katsunet.bungee.cmds.bgc.BgcCmd;
+import com.katsunet.bungee.cmds.bpex.BpexCmd;
+import com.katsunet.bungee.cmds.bserver.BserverCmd;
 import com.katsunet.bungee.cmds.commandhider.CommandHider;
 import com.katsunet.bungee.cmds.debug.DebugCmd;
 import com.katsunet.bungee.cmds.gtitle.GtitleCmd;
+import com.katsunet.bungee.cmds.help.HelpCmd;
 import com.katsunet.bungee.cmds.helpop.HelpOpCmd;
 import com.katsunet.bungee.cmds.helpop.ReplyOpCmd;
 import com.katsunet.bungee.cmds.info.ICmd;
 import com.katsunet.bungee.cmds.lobby.LobbyCmd;
 import com.katsunet.bungee.cmds.ping.PingCmd;
+import com.katsunet.bungee.cmds.playerinfo.PlayerinfoCmd;
 import com.katsunet.bungee.cmds.privatemessage.ChatspyCmd;
 import com.katsunet.bungee.cmds.privatemessage.MessageCmd;
 import com.katsunet.bungee.cmds.privatemessage.MsgtoggleCmd;
@@ -34,6 +38,7 @@ import com.katsunet.bungee.evts.PostLoginCustomEvt;
 import com.katsunet.bungee.evts.ProxyPingEvt;
 import com.katsunet.bungee.evts.RegisterCustomEvt;
 import com.katsunet.bungee.evts.TabCompleteEvt;
+import com.katsunet.bungee.motd.MotdCmd;
 import com.katsunet.bungee.scheduler.AnnouncementsSch;
 import com.katsunet.bungee.scheduler.PlayerKickerSch;
 import com.katsunet.classes.SpkPlayer;
@@ -147,11 +152,23 @@ public class Main extends Plugin {
 		// Announcements admin
 		this.getProxy().getPluginManager().registerCommand(this, new AnnouncementsCmd(this));
 		
-		// Help topics
-		//register command
-		
 		// Gtitle: Send global titles and subtitles.
 		this.getProxy().getPluginManager().registerCommand(this, new GtitleCmd(this));
+		// ^ TILL HERE IS OK!!
+		// Help topics
+		this.getProxy().getPluginManager().registerCommand(this, new HelpCmd(this));
+		
+		// Playerinfo
+		this.getProxy().getPluginManager().registerCommand(this, new PlayerinfoCmd(this));
+		
+		// Server MOTD
+		this.getProxy().getPluginManager().registerCommand(this, new MotdCmd(this));
+		
+		// Permissions
+		this.getProxy().getPluginManager().registerCommand(this, new BpexCmd(this));
+		
+		// Spigot servers management on the fly
+		this.getProxy().getPluginManager().registerCommand(this, new BserverCmd(this));
 		
 		// HelpOp commands
 		this.getProxy().getPluginManager().registerCommand(this, new HelpOpCmd(this));
@@ -181,7 +198,7 @@ public class Main extends Plugin {
 		this.getProxy().getPluginManager().registerListener(this, new RegisterCustomEvt(this));
 		this.getProxy().getPluginManager().registerListener(this, new LoginCustomEvt(this));
 		this.getProxy().getPluginManager().registerListener(this, new ChangePasswordCustomEvt());
-		//idea: Change tab header and footer.
+		//Idea: Change tab header and footer.
 		
 		// Scheduled repeating tasks
 		this.getProxy().getScheduler().schedule(this, new AnnouncementsSch(this), this._mainCnf.getYaml().getInt(Global.CONFNODE_ANN_DELAY), _mainCnf.getYaml().getInt(Global.CONFNODE_ANN_DELAY),TimeUnit.SECONDS);

@@ -17,7 +17,6 @@ public class PlayerKickerSch implements Runnable {
 	
 	@Override
 	public void run(){
-		System.out.println("Player kicker executed.");
 		for (String playername : this.plugin.getPlayerList().keySet()){
 			SpkPlayer spk = this.plugin.getPlayerList().get(playername);
 			if(!spk.getIsLoggedIn() && Global.getCurrentTimeSeconds()> spk.getConnectTime()+this.plugin.getMainCnf().getYaml().getInt(Global.CONFNODE_LOGIN_GRACE_TIME)){

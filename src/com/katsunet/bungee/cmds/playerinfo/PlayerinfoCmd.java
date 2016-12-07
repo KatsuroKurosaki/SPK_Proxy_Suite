@@ -1,4 +1,4 @@
-package com.katsunet.bungee.cmds.playerinfo_wip;
+package com.katsunet.bungee.cmds.playerinfo;
 
 import com.katsunet.spkproxysuite.bungee.Main;
 
@@ -11,13 +11,12 @@ public class PlayerinfoCmd extends Command {
 	private Main plugin;
 	
 	public PlayerinfoCmd(Main plugin){
-		super("playerinfo","spkproxysuite.playerinfo");
+		super("playerinfo","spkproxysuite.playerinfo",new String[]{"pi"});
 		this.plugin=plugin;
 	}
 
 	@Override
 	public void execute(CommandSender arg0, String[] arg1) {
-		this.plugin.getMainCnf();
 		arg0.sendMessage(new TextComponent("Not yet implemented."));
 		/*
 		 * TextComponent message = new TextComponent( "Click me" );

@@ -1,4 +1,4 @@
-package com.katsunet.bungee.cmds.help_wip;
+package com.katsunet.bungee.cmds.help;
 
 import com.katsunet.spkproxysuite.bungee.Main;
 
@@ -17,7 +17,6 @@ public class HelpCmd extends Command {
 
 	@Override
 	public void execute(CommandSender arg0, String[] arg1) {
-		this.plugin.getMainCnf();
 		arg0.sendMessage(new TextComponent("Not yet implemented."));
 		/*if(arg1.length==0){
 			this.info(arg0,arg1);

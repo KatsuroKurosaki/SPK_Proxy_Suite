@@ -1,4 +1,4 @@
-package com.katsunet.bungee.motd_wip;
+package com.katsunet.bungee.cmds.bpex;
 
 import com.katsunet.spkproxysuite.bungee.Main;
 
@@ -6,18 +6,17 @@ import net.md_5.bungee.api.CommandSender;
 import net.md_5.bungee.api.chat.TextComponent;
 import net.md_5.bungee.api.plugin.Command;
 
-public class MotdCmd extends Command {
+public class BpexCmd extends Command {
 
 	private Main plugin;
 	
-	public MotdCmd(Main plugin){
-		super("motd","spkproxysuite.motd");
+	public BpexCmd(Main plugin){
+		super("bpex","spkproxysuite.bpex");
 		this.plugin=plugin;
 	}
 
 	@Override
 	public void execute(CommandSender arg0, String[] arg1) {
-		this.plugin.getMainCnf();
 		arg0.sendMessage(new TextComponent("Not yet implemented."));
 		/*if(arg1.length==0){
 			this.info(arg0,arg1);
