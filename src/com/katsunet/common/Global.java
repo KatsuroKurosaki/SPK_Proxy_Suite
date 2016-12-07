@@ -43,15 +43,15 @@ public class Global {
 	public static String PERM_COOLDOWNIGN = "privatemessage.cooldownignore";
 	public static String PERM_DEBUGGER						= "spkproxysuite.debug";
 	public static String PERM_HELPOP = "helpop.staff";
-	public static String PERM_BGCVIEW = "bgc.view";
-	public static String PERM_BGCFREE = "bgc.free";
+	public static String PERM_BGCVIEW						= "spkproxysuite.bgcview";
+	public static String PERM_BGCFREE						= "spkproxysuite.bgcfree";
 	public static String PERM_ANNOUNCEMENTS = "announcements.admin";
 	public static String PERM_STAFF_CMD						= "spkproxysuite.staffcommand";
 	public static String PERM_STAFF_MEMBER					= "spkproxysuite.staffmember";
 	
 	// Other globals
-	public static final Pattern VALID_EMAIL_ADDRESS_REGEX = Pattern.compile("^[_A-Z0-9-\\+]+(\\.[_A-Z0-9-]+)*@[A-Z0-9-]+(\\.[A-Z0-9]+)*(\\.[A-Z]{2,})$",Pattern.CASE_INSENSITIVE);
-	public static final String ANON_PROXY_STR = "Anonymous Proxy";
+	public static final Pattern VALID_EMAIL_ADDRESS_REGEX	= Pattern.compile("^[_A-Z0-9-\\+]+(\\.[_A-Z0-9-]+)*@[A-Z0-9-]+(\\.[A-Z0-9]+)*(\\.[A-Z]{2,})$",Pattern.CASE_INSENSITIVE);
+	public static final String ANON_PROXY_STR				= "Anonymous Proxy";
 	
 	public static int getCurrentTimeSeconds(){
 		return (int) (System.currentTimeMillis() / 1000L);
