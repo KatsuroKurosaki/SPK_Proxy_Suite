@@ -151,7 +151,7 @@ public class Main extends Plugin {
 		//register command
 		
 		// Gtitle: Send global titles and subtitles.
-		this.getProxy().getPluginManager().registerCommand(this, new GtitleCmd());
+		this.getProxy().getPluginManager().registerCommand(this, new GtitleCmd(this));
 		
 		// HelpOp commands
 		this.getProxy().getPluginManager().registerCommand(this, new HelpOpCmd(this));

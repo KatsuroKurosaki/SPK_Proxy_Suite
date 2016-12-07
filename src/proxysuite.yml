@@ -13,6 +13,11 @@ chatspyenabledplayerlist: []
 # HelpOp cooldown in seconds
 helpopcooldown: 120
 
+# Gtitle timings
+gtitle:
+  fadetime: 1
+  staytime: 5
+
 # Lobby command and server
 lobby:
   server: 'lobby'
