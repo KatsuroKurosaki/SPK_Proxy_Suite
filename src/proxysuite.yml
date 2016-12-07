@@ -40,7 +40,7 @@ commandhider:
   - "bukkit:ver"
   - "bukkit:version"
 
-# Announcements. Magic symbol §
+# Announcements.
 announcements:
   delay: 300
   prefix: '[Server] '

@@ -26,9 +26,9 @@ public class Global {
 	public static String CONFNODE_LOBBY_SERVER				= "lobby.server";
 	public static String CONFNODE_LOBBY_COMMAND				= "lobby.command";
 	public static String CONFNODE_LOBBY_COMMANDALIAS		= "lobby.alias";
-	public static String CONFNODE_ANN_DELAY = "announcements.delay";
-	public static String CONFNODE_ANN_PREFIX = "announcements.prefix";
-	public static String CONFNODE_ANN_MSGS = "announcements.messages";
+	public static String CONFNODE_ANN_DELAY					= "announcements.delay";
+	public static String CONFNODE_ANN_PREFIX				= "announcements.prefix";
+	public static String CONFNODE_ANN_MSGS					= "announcements.messages";
 	public static String CONFNODE_CMDHIDE_UNKNOWN			= "commandhider.unknowncmdmsg";
 	public static String CONFNODE_CMDHIDE_CMDLIST			= "commandhider.hiddencommands";
 	// Nodes for database.yml
@@ -46,9 +46,10 @@ public class Global {
 	public static String PERM_HELPOP = "helpop.staff";
 	public static String PERM_BGCVIEW						= "spkproxysuite.bgcview";
 	public static String PERM_BGCFREE						= "spkproxysuite.bgcfree";
-	public static String PERM_ANNOUNCEMENTS = "announcements.admin";
+	public static String PERM_ANNOUNCEMENTS					= "spkproxysuite.announcements";
 	public static String PERM_STAFF_CMD						= "spkproxysuite.staffcommand";
 	public static String PERM_STAFF_MEMBER					= "spkproxysuite.staffmember";
+	public static String PERM_GTITLE_COMMAND				= "spkproxysuite.gtitle";
 	
 	// Other globals
 	public static final Pattern VALID_EMAIL_ADDRESS_REGEX	= Pattern.compile("^[_A-Z0-9-\\+]+(\\.[_A-Z0-9-]+)*@[A-Z0-9-]+(\\.[A-Z0-9]+)*(\\.[A-Z]{2,})$",Pattern.CASE_INSENSITIVE);
