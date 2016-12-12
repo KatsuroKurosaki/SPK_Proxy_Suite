@@ -37,6 +37,7 @@ import com.katsunet.bungee.evts.PlayerDisconnectEvt;
 import com.katsunet.bungee.evts.PostLoginCustomEvt;
 import com.katsunet.bungee.evts.ProxyPingEvt;
 import com.katsunet.bungee.evts.RegisterCustomEvt;
+import com.katsunet.bungee.evts.ServerKickEvt;
 import com.katsunet.bungee.evts.TabCompleteEvt;
 import com.katsunet.bungee.motd.MotdCmd;
 import com.katsunet.bungee.scheduler.AnnouncementsSch;
@@ -192,6 +193,7 @@ public class Main extends Plugin {
 		this.getProxy().getPluginManager().registerListener(this, new PlayerDisconnectEvt(this));
 		this.getProxy().getPluginManager().registerListener(this, new ProxyPingEvt(this));
 		this.getProxy().getPluginManager().registerListener(this, new PermissionCheckEvt(this));
+		this.getProxy().getPluginManager().registerListener(this, new ServerKickEvt(this));
 		
 		// Custom Events
 		this.getProxy().getPluginManager().registerListener(this, new PostLoginCustomEvt());
