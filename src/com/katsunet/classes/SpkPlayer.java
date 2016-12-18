@@ -12,6 +12,7 @@ public class SpkPlayer {
 	private boolean _isLoggedIn;
 	private String _ipaddress;
 	private String _country;
+	private int _loginAttempts;
 	
 
 	public int getConnectTime(){
@@ -71,10 +72,20 @@ public class SpkPlayer {
 		this._country = country;
 	}
 	
+	public boolean maximumLoginAttempsReached(int maxAllowedAttempts){
+		if(this._loginAttempts < maxAllowedAttempts){
+			this._loginAttempts++;
+			return false;
+		} else {
+			return true;
+		}
+	}
+	
 	public SpkPlayer(int mcversion, String ipaddress){
 		this._mcversion=mcversion;
-		this._lastMessageTime = Global.getCurrentTimeSeconds();
-		this._lastHelpopMsgTime = Global.getCurrentTimeSeconds();
+		this._lastMessageTime = 0;
+		this._lastHelpopMsgTime = 0;
+		this._loginAttempts = 0;
 		this._connectTime = Global.getCurrentTimeSeconds();
 		this._isLoggedIn=false;
 		this._ipaddress=ipaddress;

@@ -13,16 +13,18 @@ chatspyenabledplayerlist: []
 # HelpOp cooldown in seconds
 helpopcooldown: 120
 
-# Grace time to login before autokick
+# Grace time in seconds to login before autokick and login attempts
 logingracetime: 60
+loginkickattempts: 3
 
 # Gtitle timings
 gtitle:
   fadetime: 1
   staytime: 5
 
-# Lobby command and server
+# Lobby command and server, also auth server to avoid kicking player if a server goes down
 lobby:
+  authserver: 'prelobby'
   server: 'lobby'
   command: 'lobby'
   alias:
