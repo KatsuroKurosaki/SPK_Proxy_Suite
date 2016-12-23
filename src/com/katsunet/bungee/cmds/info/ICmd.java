@@ -24,6 +24,9 @@ public class ICmd extends Command {
 					for (int i = 1; i < arg1.length; i++) {
 						builder.append(" " + arg1[i]);
 					}
+					player.sendMessage(new TextComponent(ChatColor.RED + "*******************************"));		
+					player.sendMessage(new TextComponent(ChatColor.translateAlternateColorCodes('&',builder.toString())));		
+					player.sendMessage(new TextComponent(ChatColor.RED + "*******************************"));
 					player.sendMessage(ChatMessageType.ACTION_BAR,new ComponentBuilder(ChatColor.translateAlternateColorCodes('&', builder.toString())).create());					
 					builder = null;
 					player = null;
