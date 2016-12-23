@@ -27,7 +27,7 @@ public class HelpOpCmd extends Command {
 				arg0.sendMessage(new TextComponent("[§cHelp§eOP§f] Te olvidaste el motivo. Usa: /helpop <motivo>"));
 			} else if (arg1.length<3){
 				arg0.sendMessage(new TextComponent("[§cHelp§eOP§f] Debes escribir almenos 3 palabras para enviar el helpop."));
-			} else if(arg0.hasPermission(Global.PERM_HELPOP)){
+			} else if(arg0.hasPermission(Global.PERM_RECEIVEHELPOP)){
 				arg0.sendMessage(new TextComponent("[§cHelp§eOP§f] Ya eres parte del staff, no puedes enviarte ayuda a ti mismo."));
 			} else {
 				SpkPlayer p = this.plugin.getPlayerList().get(arg0.getName());
@@ -40,7 +40,7 @@ public class HelpOpCmd extends Command {
 						strb.append(" "+arg1[i]);
 					}
 					for (ProxiedPlayer player : ProxyServer.getInstance().getPlayers()) {
-						if (player.hasPermission(Global.PERM_HELPOP)){
+						if (player.hasPermission(Global.PERM_RECEIVEHELPOP)){
 							player.sendMessage(new TextComponent("§c§l[HelpOP] §r'"+arg0.getName()+"' en '"+sender.getServer().getInfo().getName()+"' dice:"+strb.toString()));
 						}
 					}

@@ -43,12 +43,12 @@ public class Global {
 	public static String CONFNODE_DB_PASS					= "db.pass";
 	
 	// Permission nodes
-	public static String PERM_CHATSPY = "privatemessage.chatspy";
-	public static String PERM_MSGTOGGLE = "privatemessage.msgtoggle";
-	public static String PERM_MSGTOGGLEIGN = "privatemessage.msgtoggleignore";
-	public static String PERM_COOLDOWNIGN = "privatemessage.cooldownignore";
+	public static String PERM_CHATSPY						= "spkproxysuite.chatspy";
+	public static String PERM_MSGTOGGLE						= "spkproxysuite.msgtoggle";
+	public static String PERM_MSGTOGGLEIGN					= "spkproxysuite.msgtoggleignore";
+	public static String PERM_COOLDOWNIGN					= "spkproxysuite.msgcooldownignore";
 	public static String PERM_DEBUGGER						= "spkproxysuite.debug";
-	public static String PERM_HELPOP = "helpop.staff";
+	public static String PERM_RECEIVEHELPOP					= "spkproxysuite.helpandreplyop";
 	public static String PERM_BGCVIEW						= "spkproxysuite.bgcview";
 	public static String PERM_BGCFREE						= "spkproxysuite.bgcfree";
 	public static String PERM_ANNOUNCEMENTS					= "spkproxysuite.announcements";
