@@ -72,13 +72,12 @@ public class SpkPlayer {
 		this._country = country;
 	}
 	
-	public boolean maximumLoginAttempsReached(int maxAllowedAttempts){
-		if(this._loginAttempts < maxAllowedAttempts){
-			this._loginAttempts++;
-			return false;
-		} else {
-			return true;
-		}
+	public void increaseLoginAttempt(){
+		this._loginAttempts++;
+	}
+	
+	public int getLoginAttemps(){
+		return this._loginAttempts;
 	}
 	
 	public SpkPlayer(int mcversion, String ipaddress){
@@ -101,7 +100,8 @@ public class SpkPlayer {
 			+ "lastHelpOpMsgTime: "+this._lastHelpopMsgTime+", "
 			+ "isLoggedIn: "+this._isLoggedIn+", "
 			+ "ipaddress: "+this._ipaddress+", "
-			+ "country: "+this._country+" "
+			+ "country: "+this._country+", "
+			+ "loginAttempts: "+this._loginAttempts+" "
 		+ "}";
 	}
 }

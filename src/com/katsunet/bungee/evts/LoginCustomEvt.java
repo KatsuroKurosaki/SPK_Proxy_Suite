@@ -27,7 +27,12 @@ public class LoginCustomEvt implements Listener {
 				e.getPlayer().sendMessage(new TextComponent("[§bAuth§f] Error: No puedo encontrar el lobby. Contacta al Admin."));
 			}
 		} else {
-			e.getPlayer().sendMessage(new TextComponent("[§bAuth§f] Error al conectarte: "+e.getMsg()));
+			System.out.println( "LOGIN_ATTEMPTS"+this._plugin.getMainCnf().getYaml().getInt(Global.CONFNODE_LOGIN_ATTEMPS) );
+			if(this._plugin.getMainCnf().getYaml().getInt(Global.CONFNODE_LOGIN_ATTEMPS)>this._plugin.getPlayerList().get(e.getPlayer().getName()).getLoginAttemps()){
+				e.getPlayer().sendMessage(new TextComponent("[§bAuth§f] Error al conectarte: "+e.getMsg()));
+			} else {
+				e.getPlayer().disconnect(new TextComponent("Has superado el límite de intentos de conexión."));
+			}
 		}
 	}
 }

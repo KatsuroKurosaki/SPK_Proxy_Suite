@@ -15,7 +15,7 @@ helpopcooldown: 120
 
 # Grace time in seconds to login before autokick and login attempts
 logingracetime: 60
-loginkickattempts: 3
+loginattempts: 3
 
 # Gtitle timings
 gtitle:

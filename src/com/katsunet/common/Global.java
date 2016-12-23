@@ -19,13 +19,15 @@ public class Global {
 	public static String	CONFNODE_VERSION = "configversion";
 	
 	// Nodes for proxysuite.yml
-	public static String CONFNODE_MSGCOOLDOWN = "msgcooldown";
-	public static String CONFNODE_NORCVLST = "msgdisabledplayerlist";
-	public static String CONFNODE_CHATSPYLST = "chatspyenabledplayerlist";
-	public static String CONFNODE_HELPOPCLDWN = "helpopcooldown";
+	public static String CONFNODE_MSGCOOLDOWN				= "msgcooldown";
+	public static String CONFNODE_NORCVLST					= "msgdisabledplayerlist";
+	public static String CONFNODE_CHATSPYLST				= "chatspyenabledplayerlist";
+	public static String CONFNODE_HELPOPCLDWN				= "helpopcooldown";
 	public static String CONFNODE_LOGIN_GRACE_TIME			= "logingracetime";
+	public static String CONFNODE_LOGIN_ATTEMPS 			= "loginattempts";
 	public static String CONFNODE_GTITLE_FADE 				= "gtitle.fadetime";
 	public static String CONFNODE_GTITLE_STAY 				= "gtitle.staytime";
+	public static String CONFNODE_AUTHLOBBY_SERVER			= "lobby.authserver";
 	public static String CONFNODE_LOBBY_SERVER				= "lobby.server";
 	public static String CONFNODE_LOBBY_COMMAND				= "lobby.command";
 	public static String CONFNODE_LOBBY_COMMANDALIAS		= "lobby.alias";

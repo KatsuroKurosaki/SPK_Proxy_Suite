@@ -46,6 +46,7 @@ public class LoginAsync implements Runnable{
 						ps.close();
 						this.plugin.getProxy().getPluginManager().callEvent(new LoginCustomEvent(true, this.player,""));
 					} else {
+						this.plugin.getPlayerList().get(this.player.getName()).increaseLoginAttempt();
 						this.plugin.getProxy().getPluginManager().callEvent(new LoginCustomEvent(false, this.player,"La contraseña que has escrito no es correcta."));
 					}
 				}else{
