@@ -155,21 +155,21 @@ public class Main extends Plugin {
 		
 		// Gtitle: Send global titles and subtitles.
 		this.getProxy().getPluginManager().registerCommand(this, new GtitleCmd(this));
-		// ^ TILL HERE IS OK!!
+		
 		// Help topics
-		this.getProxy().getPluginManager().registerCommand(this, new HelpCmd(this));
+		this.getProxy().getPluginManager().registerCommand(this, new HelpCmd(this)); // WIP
 		
 		// Playerinfo
-		this.getProxy().getPluginManager().registerCommand(this, new PlayerinfoCmd(this));
+		this.getProxy().getPluginManager().registerCommand(this, new PlayerinfoCmd(this)); // WIP
 		
 		// Server MOTD
-		this.getProxy().getPluginManager().registerCommand(this, new MotdCmd(this));
+		this.getProxy().getPluginManager().registerCommand(this, new MotdCmd(this)); // WIP
 		
 		// Permissions
-		this.getProxy().getPluginManager().registerCommand(this, new BpexCmd(this));
+		this.getProxy().getPluginManager().registerCommand(this, new BpexCmd(this)); // WIP
 		
 		// Spigot servers management on the fly
-		this.getProxy().getPluginManager().registerCommand(this, new BserverCmd(this));
+		this.getProxy().getPluginManager().registerCommand(this, new BserverCmd(this)); // WIP
 		
 		// HelpOp commands
 		this.getProxy().getPluginManager().registerCommand(this, new HelpOpCmd(this));
@@ -191,8 +191,8 @@ public class Main extends Plugin {
 		this.getProxy().getPluginManager().registerListener(this, new TabCompleteEvt(this));
 		this.getProxy().getPluginManager().registerListener(this, new PostLoginEvt(this));
 		this.getProxy().getPluginManager().registerListener(this, new PlayerDisconnectEvt(this));
-		this.getProxy().getPluginManager().registerListener(this, new ProxyPingEvt(this));
-		this.getProxy().getPluginManager().registerListener(this, new PermissionCheckEvt(this));
+		this.getProxy().getPluginManager().registerListener(this, new ProxyPingEvt(this)); // WIP
+		this.getProxy().getPluginManager().registerListener(this, new PermissionCheckEvt(this)); // WIP
 		this.getProxy().getPluginManager().registerListener(this, new ServerKickEvt(this));
 		
 		// Custom Events
@@ -201,6 +201,7 @@ public class Main extends Plugin {
 		this.getProxy().getPluginManager().registerListener(this, new LoginCustomEvt(this));
 		this.getProxy().getPluginManager().registerListener(this, new ChangePasswordCustomEvt());
 		//Idea: Change tab header and footer.
+		//Idea: Add scoreboards, use Spigot-Bungee communication channel to get extra info.
 		
 		// Scheduled repeating tasks
 		this.getProxy().getScheduler().schedule(this, new AnnouncementsSch(this), this._mainCnf.getYaml().getInt(Global.CONFNODE_ANN_DELAY), _mainCnf.getYaml().getInt(Global.CONFNODE_ANN_DELAY),TimeUnit.SECONDS);
