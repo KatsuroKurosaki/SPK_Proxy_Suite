@@ -29,7 +29,7 @@ public class PlayerinfoAsync implements Runnable{
 			String sql = null;
 			
 			try {
-				sql = "SELECT mc_players.email, mc_ranks.rank, mc_players.rankuntil, mc_players.connections, mc_players.registerdate, mc_players.lastlogin "
+				sql = "SELECT mc_players.email, mc_ranks.rank, DATE_FORMAT(mc_players.rankuntil,'%H:%i:%s %d/%m/%Y') as rankuntil, mc_players.connections, DATE_FORMAT(mc_players.registerdate,'%H:%i:%s %d/%m/%Y') as registerdate, DATE_FORMAT(mc_players.lastlogin,'%H:%i:%s %d/%m/%Y') as lastlogin "
 					+ "FROM mc_players "
 					+ "INNER JOIN mc_ranks ON mc_ranks.id = mc_players.rankid "
 					+ "WHERE mc_players.playername = ?;";

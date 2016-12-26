@@ -32,14 +32,13 @@ public class PlayerinfoCustomEvt implements Listener {
 				e.getSender().sendMessage(new TextComponent("§bVersión: §f"+Global.getMinecraftVersion(this._plugin.getPlayerList().get(e.getPlayername()).getMcVersion())));
 				e.getSender().sendMessage(new TextComponent("§bModalidad: §f"+player.getServer().getInfo().getName()));
 				e.getSender().sendMessage(new TextComponent("§bPING: "+PingCmd.responseColor(player.getPing()) + player.getPing() + " ms"));
+				e.getSender().sendMessage(new TextComponent("§bPaís: §f"+this._plugin.getPlayerList().get(e.getPlayername()).getCountry()));
 			} else {
 				e.getSender().sendMessage(new TextComponent("§bEstado: "+ChatColor.RED+"OFFLINE"));
-				//e.getSender().sendMessage(new TextComponent("§bVersión: §fN/A"));
-				//e.getSender().sendMessage(new TextComponent("§bModalidad: §fN/A"));
 				e.getSender().sendMessage(new TextComponent("§bÚltima conexión: §f"+e.getLastLogin()+" (GMT-0)"));
 			}
 			e.getSender().sendMessage(new TextComponent("§bConexiones: §f"+e.getConnections()));
-			e.getSender().sendMessage(new TextComponent("§bFecha registro: §f"+e.getRegisterDate()));
+			e.getSender().sendMessage(new TextComponent("§bFecha registro: §f"+e.getRegisterDate()+" (GMT-0)"));
 			e.getSender().sendMessage(new TextComponent("§b***** §fDATOS DE "+e.getPlayername()+" §b*****"));
 			player=null;
 		} else {
