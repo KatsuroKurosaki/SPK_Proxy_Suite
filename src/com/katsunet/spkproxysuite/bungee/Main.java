@@ -171,19 +171,19 @@ public class Main extends Plugin {
 		this.getProxy().getPluginManager().registerCommand(this, new GtitleCmd(this));
 		
 		// Help topics
-		this.getProxy().getPluginManager().registerCommand(this, new HelpCmd(this)); // WIP
+		this.getProxy().getPluginManager().registerCommand(this, new HelpCmd(this)); // TODO: This
 		
 		// Playerinfo
 		this.getProxy().getPluginManager().registerCommand(this, new PlayerinfoCmd(this));
 		
 		// Server MOTD
-		this.getProxy().getPluginManager().registerCommand(this, new MotdCmd(this)); // WIP
+		this.getProxy().getPluginManager().registerCommand(this, new MotdCmd(this)); // TODO: This
 		
 		// Permissions
 		this.getProxy().getPluginManager().registerCommand(this, new BpexCmd(this));
 		
 		// Spigot servers management on the fly
-		this.getProxy().getPluginManager().registerCommand(this, new BserverCmd(this)); // WIP
+		this.getProxy().getPluginManager().registerCommand(this, new BserverCmd(this)); // TODO: This
 		
 		// HelpOp commands
 		this.getProxy().getPluginManager().registerCommand(this, new HelpOpCmd(this));
@@ -205,8 +205,8 @@ public class Main extends Plugin {
 		this.getProxy().getPluginManager().registerListener(this, new TabCompleteEvt(this));
 		this.getProxy().getPluginManager().registerListener(this, new PostLoginEvt(this));
 		this.getProxy().getPluginManager().registerListener(this, new PlayerDisconnectEvt(this));
-		this.getProxy().getPluginManager().registerListener(this, new ProxyPingEvt(this)); // WIP
-		this.getProxy().getPluginManager().registerListener(this, new PermissionCheckEvt(this)); // WIP
+		this.getProxy().getPluginManager().registerListener(this, new ProxyPingEvt(this)); // TODO: This
+		this.getProxy().getPluginManager().registerListener(this, new PermissionCheckEvt(this));
 		this.getProxy().getPluginManager().registerListener(this, new ServerKickEvt(this));
 		
 		// Custom Events
