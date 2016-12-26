@@ -43,6 +43,7 @@ import com.katsunet.bungee.evts.TabCompleteEvt;
 import com.katsunet.bungee.motd.MotdCmd;
 import com.katsunet.bungee.scheduler.AnnouncementsSch;
 import com.katsunet.bungee.scheduler.PlayerKickerSch;
+import com.katsunet.classes.BungeeGroup;
 import com.katsunet.classes.SpkPlayer;
 import com.katsunet.common.BungeeYamlFile;
 import com.katsunet.common.GeoIP;
@@ -57,6 +58,7 @@ public class Main extends Plugin {
 	private MySQLConn _mysql;
 	private List<String> _noRecvList;
 	private List<String> _chatspyList;
+	private ConcurrentHashMap<String, BungeeGroup> _bungeeGroups;
 	private ConcurrentHashMap<String, SpkPlayer> _playerList;
 	private LookupService _lookupService;
 	
@@ -127,8 +129,17 @@ public class Main extends Plugin {
 		this._playerList = new ConcurrentHashMap<String, SpkPlayer>();
 		this._noRecvList = this._mainCnf.getYaml().getStringList(Global.CONFNODE_NORCVLST);
 		this._chatspyList = this._mainCnf.getYaml().getStringList(Global.CONFNODE_CHATSPYLST);
+		this._bungeeGroups = new ConcurrentHashMap<String,BungeeGroup>();
+		for (String item : this._bungeeCnf.getYaml().getSection(Global.CONFNODE_GROUPS).getKeys() ){
+			BungeeGroup bg = new BungeeGroup(item);
+			this._bungeeGroups.put(item, bg);
+			for (String perm : this._bungeeCnf.getYaml().getStringList(Global.CONFNODE_GROUPS+"."+item) ){
+				bg.addPermission(perm);
+			}
+			bg=null;
+		}
 		
-		
+		System.out.println(this._bungeeGroups);
 		
 		// Debug Commands
 		this.getProxy().getPluginManager().registerCommand(this, new DebugCmd(this));

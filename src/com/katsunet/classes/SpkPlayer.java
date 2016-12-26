@@ -1,5 +1,7 @@
 package com.katsunet.classes;
 
+import java.util.ArrayList;
+
 import com.katsunet.common.Global;
 
 public class SpkPlayer {
@@ -13,7 +15,7 @@ public class SpkPlayer {
 	private String _ipaddress;
 	private String _country;
 	private int _loginAttempts;
-	
+	private ArrayList<String> _bungeeGroupMember;
 
 	public int getConnectTime(){
 		return this._connectTime;
@@ -76,6 +78,14 @@ public class SpkPlayer {
 		this._loginAttempts++;
 	}
 	
+	public void addBungeeGroup(String group){
+		this._bungeeGroupMember.add(group);
+	}
+	
+	public void removeBungeeGroup(String group){
+		this._bungeeGroupMember.remove(group);
+	}
+	
 	public int getLoginAttemps(){
 		return this._loginAttempts;
 	}
@@ -88,6 +98,8 @@ public class SpkPlayer {
 		this._connectTime = Global.getCurrentTimeSeconds();
 		this._isLoggedIn=false;
 		this._ipaddress=ipaddress;
+		this._bungeeGroupMember = new ArrayList<String>();
+		this._bungeeGroupMember.add(Global.BUNGEE_DEFAULT_GROUP_NAME);
 	}
 	
 	@Override
@@ -101,7 +113,8 @@ public class SpkPlayer {
 			+ "isLoggedIn: "+this._isLoggedIn+", "
 			+ "ipaddress: "+this._ipaddress+", "
 			+ "country: "+this._country+", "
-			+ "loginAttempts: "+this._loginAttempts+" "
+			+ "loginAttempts: "+this._loginAttempts+", "
+			+ "_bungeeGroupMember: "+this._bungeeGroupMember
 		+ "}";
 	}
 }
