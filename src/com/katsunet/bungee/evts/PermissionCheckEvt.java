@@ -1,5 +1,6 @@
 package com.katsunet.bungee.evts;
 
+import com.katsunet.classes.BungeeGroup;
 import com.katsunet.spkproxysuite.bungee.Main;
 
 import net.md_5.bungee.api.event.PermissionCheckEvent;
@@ -16,9 +17,15 @@ public class PermissionCheckEvt implements Listener {
 	
 	@EventHandler
 	public void onPermissionCheckEvent(PermissionCheckEvent e){
-		System.out.println("Permission check");
-		System.out.println(e.toString());
-		
+		boolean hasPermission = false;
+		for (String group : this._plugin.getPlayerList().get(e.getSender().getName()).getBungeeGroups()){
+			BungeeGroup bg = this._plugin.getBungeeGroups().get(group);
+			if(!hasPermission){
+				hasPermission = bg.permissionExists(e.getPermission());
+			}
+			bg = null;
+		}
+		e.setHasPermission(hasPermission);
 	}
 
 }

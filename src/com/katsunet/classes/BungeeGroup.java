@@ -19,6 +19,16 @@ public class BungeeGroup {
 		return this._groupName;
 	}
 	
+	public boolean permissionExists(String perm){
+		boolean exists = false;
+		for (String permission : this._permissionList){
+			if(perm.equals(permission)){
+				exists=true;
+			}
+		}
+		return exists;
+	}
+	
 	@Override
 	public String toString(){
 		return "Name: "+this._groupName+" Permission list: "+this._permissionList.toString();

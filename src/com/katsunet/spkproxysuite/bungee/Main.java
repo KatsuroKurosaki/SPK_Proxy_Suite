@@ -82,6 +82,10 @@ public class Main extends Plugin {
 		return this._chatspyList;
 	}
 	
+	public ConcurrentHashMap<String,BungeeGroup> getBungeeGroups(){
+		return this._bungeeGroups;
+	}
+	
 	public ConcurrentHashMap<String, SpkPlayer> getPlayerList(){
 		return this._playerList;
 	}

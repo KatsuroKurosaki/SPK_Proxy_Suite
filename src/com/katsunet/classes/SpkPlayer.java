@@ -86,6 +86,10 @@ public class SpkPlayer {
 		this._bungeeGroupMember.remove(group);
 	}
 	
+	public ArrayList<String> getBungeeGroups(){
+		return this._bungeeGroupMember;
+	}
+	
 	public int getLoginAttemps(){
 		return this._loginAttempts;
 	}
