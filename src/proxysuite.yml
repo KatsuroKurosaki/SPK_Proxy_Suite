@@ -33,7 +33,7 @@ lobby:
 # MOTD management, shown when people see server list.
 motd:
   line1: 'Welcome to my'
-  line2: 'awesome server!
+  line2: 'awesome server!'
 
 # Hidden commands
 commandhider:
