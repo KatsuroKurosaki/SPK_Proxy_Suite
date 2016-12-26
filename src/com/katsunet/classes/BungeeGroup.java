@@ -15,18 +15,16 @@ public class BungeeGroup {
 		this._permissionList.add(permission);
 	}
 	
+	public void delPermission(String permission){
+		this._permissionList.remove(permission);
+	}
+	
 	public String getGroupName(){
 		return this._groupName;
 	}
 	
 	public boolean permissionExists(String perm){
-		boolean exists = false;
-		for (String permission : this._permissionList){
-			if(perm.equals(permission)){
-				exists=true;
-			}
-		}
-		return exists;
+		return this._permissionList.contains(perm);
 	}
 	
 	@Override

@@ -59,6 +59,7 @@ public class Global {
 	public static String	PERM_STAFF_MEMBER					= "spkproxysuite.staffmember";
 	public static String	PERM_GTITLE_COMMAND					= "spkproxysuite.gtitle";
 	public static String	PERM_PLAYERINFO_COMMAND				= "spkproxysuite.playerinfo";
+	public static String	PERM_BPERMISSIONS_COMMAND			= "spkproxysuite.bpex";
 	
 	// Other globals
 	public static final		Pattern VALID_EMAIL_ADDRESS_REGEX	= Pattern.compile("^[_A-Z0-9-\\+]+(\\.[_A-Z0-9-]+)*@[A-Z0-9-]+(\\.[A-Z0-9]+)*(\\.[A-Z]{2,})$",Pattern.CASE_INSENSITIVE);

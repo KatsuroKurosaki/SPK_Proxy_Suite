@@ -143,8 +143,6 @@ public class Main extends Plugin {
 			bg=null;
 		}
 		
-		System.out.println(this._bungeeGroups);
-		
 		// Debug Commands
 		this.getProxy().getPluginManager().registerCommand(this, new DebugCmd(this));
 		
@@ -182,7 +180,7 @@ public class Main extends Plugin {
 		this.getProxy().getPluginManager().registerCommand(this, new MotdCmd(this)); // WIP
 		
 		// Permissions
-		this.getProxy().getPluginManager().registerCommand(this, new BpexCmd(this)); // WIP
+		this.getProxy().getPluginManager().registerCommand(this, new BpexCmd(this));
 		
 		// Spigot servers management on the fly
 		this.getProxy().getPluginManager().registerCommand(this, new BserverCmd(this)); // WIP

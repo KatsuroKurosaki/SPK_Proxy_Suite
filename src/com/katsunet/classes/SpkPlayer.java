@@ -94,6 +94,18 @@ public class SpkPlayer {
 		return this._loginAttempts;
 	}
 	
+	public SpkPlayer(){
+		this._mcversion=0;
+		this._lastMessageTime = 0;
+		this._lastHelpopMsgTime = 0;
+		this._loginAttempts = 0;
+		this._connectTime = Global.getCurrentTimeSeconds();
+		this._isLoggedIn=false;
+		this._ipaddress="";
+		this._bungeeGroupMember = new ArrayList<String>();
+		this._bungeeGroupMember.add(Global.BUNGEE_DEFAULT_GROUP_NAME);
+	}
+	
 	public SpkPlayer(int mcversion, String ipaddress){
 		this._mcversion=mcversion;
 		this._lastMessageTime = 0;
