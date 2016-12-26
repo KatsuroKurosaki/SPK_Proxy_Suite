@@ -35,7 +35,7 @@ public class PlayerinfoCustomEvt implements Listener {
 				e.getSender().sendMessage(new TextComponent("§bModalidad: §f"+player.getServer().getInfo().getName()));
 				e.getSender().sendMessage(new TextComponent("§bPING: "+PingCmd.responseColor(player.getPing()) + player.getPing() + " ms"));
 				e.getSender().sendMessage(new TextComponent("§bPaís: §f"+this._plugin.getPlayerList().get(e.getPlayername()).getCountry()));
-				e.getSender().sendMessage(new TextComponent("§bIP: "+this._plugin.getPlayerList().get(e.getPlayername()).getIpAddress()));
+				e.getSender().sendMessage(new TextComponent("§bIP: §f"+this._plugin.getPlayerList().get(e.getPlayername()).getIpAddress()));
 			} else {
 				e.getSender().sendMessage(new TextComponent("§bEstado: "+ChatColor.RED+"OFFLINE"));
 				e.getSender().sendMessage(new TextComponent("§bÚltima conexión: §f"+e.getLastLogin()+" (GMT-0)"));
