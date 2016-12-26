@@ -6,7 +6,7 @@ import net.md_5.bungee.api.plugin.Event;
 public class PlayerinfoCustomEvent extends Event {
 
 	private boolean success;
-	private String message, playername, email, rank, rankuntil, registerdate,lastlogin;
+	private String message, playername, email, rank, rankuntil, registerdate,lastlogin, lastip;
 	private int connections;
 	private CommandSender cmds;
 	
@@ -18,7 +18,8 @@ public class PlayerinfoCustomEvent extends Event {
 	
 	public PlayerinfoCustomEvent(boolean success, CommandSender cmds, String playername,
 			String email, String rank, String rankuntil,
-			int connections,String registerdate,String lastlogin){
+			int connections,String registerdate,String lastlogin,
+			String lastIp){
 		this.success=success;
 		this.cmds=cmds;
 		this.playername=playername;
@@ -28,6 +29,7 @@ public class PlayerinfoCustomEvent extends Event {
 		this.connections=connections;
 		this.registerdate=registerdate;
 		this.lastlogin=lastlogin;
+		this.lastip=lastIp;
 	}
 	
 	public boolean getSuccess(){
@@ -64,6 +66,10 @@ public class PlayerinfoCustomEvent extends Event {
 	
 	public String getRank(){
 		return this.rank;
+	}
+	
+	public String getLastIp(){
+		return this.lastip;
 	}
 	
 	public int getConnections(){
