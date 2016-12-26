@@ -1,5 +1,7 @@
 package com.katsunet.bungee.evts;
 
+import java.time.LocalTime;
+
 import com.katsunet.bungee.cmds.ping.PingCmd;
 import com.katsunet.bungee.evts.custom.PlayerinfoCustomEvent;
 import com.katsunet.common.Global;
@@ -28,7 +30,7 @@ public class PlayerinfoCustomEvt implements Listener {
 			e.getSender().sendMessage(new TextComponent("§bRango: §f"+e.getRank()));
 			e.getSender().sendMessage(new TextComponent("§bCaducidad rango: §f"+e.getRankUntil()+" (GMT-0)"));
 			if (player != null) {
-				e.getSender().sendMessage(new TextComponent("§bEstado: "+ChatColor.GREEN+"ONLINE §f("+Global.formatSeconds(Global.getCurrentTimeSeconds() - this._plugin.getPlayerList().get(e.getPlayername()).getConnectTime())+")"));
+				e.getSender().sendMessage(new TextComponent("§bEstado: "+ChatColor.GREEN+"ONLINE §f("+LocalTime.MIN.plusSeconds( Global.getCurrentTimeSeconds() - this._plugin.getPlayerList().get(e.getPlayername()).getConnectTime() )+")"));
 				e.getSender().sendMessage(new TextComponent("§bVersión: §f"+Global.getMinecraftVersion(this._plugin.getPlayerList().get(e.getPlayername()).getMcVersion())));
 				e.getSender().sendMessage(new TextComponent("§bModalidad: §f"+player.getServer().getInfo().getName()));
 				e.getSender().sendMessage(new TextComponent("§bPING: "+PingCmd.responseColor(player.getPing()) + player.getPing() + " ms"));
