@@ -34,6 +34,7 @@ import com.katsunet.bungee.evts.LoginCustomEvt;
 import com.katsunet.bungee.evts.PermissionCheckEvt;
 import com.katsunet.bungee.evts.PostLoginEvt;
 import com.katsunet.bungee.evts.PlayerDisconnectEvt;
+import com.katsunet.bungee.evts.PlayerinfoCustomEvt;
 import com.katsunet.bungee.evts.PostLoginCustomEvt;
 import com.katsunet.bungee.evts.ProxyPingEvt;
 import com.katsunet.bungee.evts.RegisterCustomEvt;
@@ -160,7 +161,7 @@ public class Main extends Plugin {
 		this.getProxy().getPluginManager().registerCommand(this, new HelpCmd(this)); // WIP
 		
 		// Playerinfo
-		this.getProxy().getPluginManager().registerCommand(this, new PlayerinfoCmd(this)); // WIP
+		this.getProxy().getPluginManager().registerCommand(this, new PlayerinfoCmd(this));
 		
 		// Server MOTD
 		this.getProxy().getPluginManager().registerCommand(this, new MotdCmd(this)); // WIP
@@ -200,6 +201,7 @@ public class Main extends Plugin {
 		this.getProxy().getPluginManager().registerListener(this, new RegisterCustomEvt(this));
 		this.getProxy().getPluginManager().registerListener(this, new LoginCustomEvt(this));
 		this.getProxy().getPluginManager().registerListener(this, new ChangePasswordCustomEvt());
+		this.getProxy().getPluginManager().registerListener(this, new PlayerinfoCustomEvt(this));
 		//Idea: Change tab header and footer.
 		//Idea: Add scoreboards, use Spigot-Bungee communication channel to get extra info.
 		

@@ -55,6 +55,7 @@ public class Global {
 	public static String PERM_STAFF_CMD						= "spkproxysuite.staffcommand";
 	public static String PERM_STAFF_MEMBER					= "spkproxysuite.staffmember";
 	public static String PERM_GTITLE_COMMAND				= "spkproxysuite.gtitle";
+	public static String PERM_PLAYERINFO_COMMAND			= "spkproxysuite.playerinfo";
 	
 	// Other globals
 	public static final Pattern VALID_EMAIL_ADDRESS_REGEX	= Pattern.compile("^[_A-Z0-9-\\+]+(\\.[_A-Z0-9-]+)*@[A-Z0-9-]+(\\.[A-Z0-9]+)*(\\.[A-Z]{2,})$",Pattern.CASE_INSENSITIVE);
@@ -105,5 +106,36 @@ public class Global {
 	    }
 	    // only got here if we didn't return false
 	    return true;
+	}
+	
+	public static String getMinecraftVersion(int version){
+		switch(version){
+			case 316: return "1.11.1-2";
+			case 315: return "1.11";
+			case 210: return "1.10.0-2";
+			case 110: return "1.9.4";
+			case 109: return "1.9.2";
+			case 108: return "1.9.1";
+			case 107: return "1.9";
+			case 47:  return "1.8.0-9";
+			case 5:   return "1.7.6-10";
+			case 4:   return "1.7.2-5";
+			case 78:  return "1.6.4";
+			case 77:  return "1.6.3";
+			case 74:  return "1.6.2";
+			case 73:  return "1.6.1";
+			case 61:  return "1.5.2";
+			case 60:  return "1.5.1";
+			case 51:  return "1.4.6-7";
+			default:  return "N/A";
+		}
+	}
+	
+	public static String formatSeconds(int totalSecs) {
+		int hours = totalSecs / 3600;
+		int minutes = (totalSecs % 3600) / 60;
+		int seconds = totalSecs % 60;
+	
+		return String.format("%02d:%02d:%02d", hours, minutes, seconds);
 	}
 }

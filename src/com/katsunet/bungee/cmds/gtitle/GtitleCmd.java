@@ -17,7 +17,7 @@ public class GtitleCmd extends Command {
 	private Main _plugin;
 	
 	public GtitleCmd(Main plugin){
-		super("gtitle",Global.PERM_GTITLE_COMMAND);
+		super("gtitle",Global.PERM_GTITLE_COMMAND,new String[]{"gt"});
 		this._plugin=plugin;
 	}
 
@@ -46,7 +46,7 @@ public class GtitleCmd extends Command {
 			strb=null;
 			message=null;
 		} else {
-			arg0.sendMessage(new TextComponent("[§bGTitle§f] No has escrito texto a enviar. Uso: /gtitle <titulo>//<subtitulo>."));
+			arg0.sendMessage(new TextComponent("[§bGTitle§f] No has escrito texto a enviar. Uso: /gt <titulo>//<subtitulo>."));
 		}
 	}
 }
