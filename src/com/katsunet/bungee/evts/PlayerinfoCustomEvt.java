@@ -28,15 +28,14 @@ public class PlayerinfoCustomEvt implements Listener {
 			e.getSender().sendMessage(new TextComponent("§bRango: §f"+e.getRank()));
 			e.getSender().sendMessage(new TextComponent("§bCaducidad rango: §f"+e.getRankUntil()+" (GMT-0)"));
 			if (player != null) {
-				int timeonline = Global.getCurrentTimeSeconds() - this._plugin.getPlayerList().get(e.getPlayername()).getConnectTime();
-				e.getSender().sendMessage(new TextComponent("§bEstado: "+ChatColor.GREEN+"ONLINE §f("+Global.formatSeconds(timeonline)+")"));
+				e.getSender().sendMessage(new TextComponent("§bEstado: "+ChatColor.GREEN+"ONLINE §f("+Global.formatSeconds(Global.getCurrentTimeSeconds() - this._plugin.getPlayerList().get(e.getPlayername()).getConnectTime())+")"));
 				e.getSender().sendMessage(new TextComponent("§bVersión: §f"+Global.getMinecraftVersion(this._plugin.getPlayerList().get(e.getPlayername()).getMcVersion())));
 				e.getSender().sendMessage(new TextComponent("§bModalidad: §f"+player.getServer().getInfo().getName()));
 				e.getSender().sendMessage(new TextComponent("§bPING: "+PingCmd.responseColor(player.getPing()) + player.getPing() + " ms"));
 			} else {
 				e.getSender().sendMessage(new TextComponent("§bEstado: "+ChatColor.RED+"OFFLINE"));
-				e.getSender().sendMessage(new TextComponent("§bVersión: §fN/A"));
-				e.getSender().sendMessage(new TextComponent("§bModalidad: §fN/A"));
+				//e.getSender().sendMessage(new TextComponent("§bVersión: §fN/A"));
+				//e.getSender().sendMessage(new TextComponent("§bModalidad: §fN/A"));
 				e.getSender().sendMessage(new TextComponent("§bÚltima conexión: §f"+e.getLastLogin()+" (GMT-0)"));
 			}
 			e.getSender().sendMessage(new TextComponent("§bConexiones: §f"+e.getConnections()));
