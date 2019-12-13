@@ -13,7 +13,6 @@ public class SpkPlayer {
 	private int _lastHelpopMsgTime;
 	private boolean _isLoggedIn;
 	private String _ipaddress;
-	private String _country;
 	private int _loginAttempts;
 	private ArrayList<String> _bungeeGroupMember;
 
@@ -45,10 +44,6 @@ public class SpkPlayer {
 		return this._ipaddress;
 	}
 	
-	public String getCountry(){
-		return this._country;
-	}
-	
 
 	public void setLastMsgNow() {
 		this._lastMessageTime = Global.getCurrentTimeSeconds();
@@ -68,10 +63,6 @@ public class SpkPlayer {
 	
 	public void setLoggedIn(boolean value){
 		this._isLoggedIn=value;
-	}
-	
-	public void setCountry(String country){
-		this._country = country;
 	}
 	
 	public void increaseLoginAttempt(){
@@ -128,7 +119,6 @@ public class SpkPlayer {
 			+ "lastHelpOpMsgTime: "+this._lastHelpopMsgTime+", "
 			+ "isLoggedIn: "+this._isLoggedIn+", "
 			+ "ipaddress: "+this._ipaddress+", "
-			+ "country: "+this._country+", "
 			+ "loginAttempts: "+this._loginAttempts+", "
 			+ "_bungeeGroupMember: "+this._bungeeGroupMember
 		+ "}";
