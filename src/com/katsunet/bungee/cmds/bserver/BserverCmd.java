@@ -8,11 +8,11 @@ import net.md_5.bungee.api.plugin.Command;
 
 public class BserverCmd extends Command {
 
-	private Main plugin;
+	//private Main plugin;
 	
 	public BserverCmd(Main plugin){
 		super("bserver","spkproxysuite.bserver");
-		this.plugin=plugin;
+		//this.plugin=plugin;
 	}
 
 	@Override

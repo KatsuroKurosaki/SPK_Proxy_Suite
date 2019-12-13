@@ -8,11 +8,11 @@ import net.md_5.bungee.api.plugin.Command;
 
 public class HelpCmd extends Command {
 
-	private Main plugin;
+	//private Main plugin;
 	
 	public HelpCmd(Main plugin){
 		super("help");
-		this.plugin=plugin;
+		//this.plugin=plugin;
 	}
 
 	@Override
