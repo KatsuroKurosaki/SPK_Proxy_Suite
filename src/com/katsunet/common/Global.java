@@ -60,10 +60,10 @@ public class Global {
 	public static String	PERM_GTITLE_COMMAND					= "spkproxysuite.gtitle";
 	public static String	PERM_PLAYERINFO_COMMAND				= "spkproxysuite.playerinfo";
 	public static String	PERM_BPERMISSIONS_COMMAND			= "spkproxysuite.bpex";
+	public static String	PERM_MOTDPERMISSION_COMMAND			= "spkproxysuite.gmotd";
 	
 	// Other globals
 	public static final		Pattern VALID_EMAIL_ADDRESS_REGEX	= Pattern.compile("^[_A-Z0-9-\\+]+(\\.[_A-Z0-9-]+)*@[A-Z0-9-]+(\\.[A-Z0-9]+)*(\\.[A-Z]{2,})$",Pattern.CASE_INSENSITIVE);
-	public static final		String ANON_PROXY_STR				= "Anonymous Proxy";
 	public static final		String BUNGEE_DEFAULT_GROUP_NAME	= "default";
 	
 	public static int getCurrentTimeSeconds(){
@@ -115,10 +115,21 @@ public class Global {
 	
 	public static String getMinecraftVersion(int version){
 		switch(version){
+			case 498: return "1.14.4";
+			case 490: return "1.14.3";
+			case 485: return "1.14.2";
+			case 480: return "1.14.1";
+			case 477: return "1.14";
+			case 404: return "1.13.2";
+			case 401: return "1.13.1";
+			case 393: return "1.13";
+			case 340: return "1.12.2";
+			case 338: return "1.12.1";
+			case 335: return "1.12";	
 			case 316: return "1.11.1-2";
 			case 315: return "1.11";
 			case 210: return "1.10.0-2";
-			case 110: return "1.9.4";
+			case 110: return "1.9.3-4";
 			case 109: return "1.9.2";
 			case 108: return "1.9.1";
 			case 107: return "1.9";
@@ -130,7 +141,7 @@ public class Global {
 			case 74:  return "1.6.2";
 			case 73:  return "1.6.1";
 			case 61:  return "1.5.2";
-			case 60:  return "1.5.1";
+			case 60:  return "1.5.0-1";
 			case 51:  return "1.4.6-7";
 			default:  return "N/A";
 		}
