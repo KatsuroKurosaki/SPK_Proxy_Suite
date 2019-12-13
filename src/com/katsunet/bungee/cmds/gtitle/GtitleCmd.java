@@ -28,7 +28,7 @@ public class GtitleCmd extends Command {
 			for(int i=0;i<arg1.length;i++) {
 				strb.append(" "+arg1[i]);
 			}
-			String[] message = strb.toString().split("//");
+			String[] message = strb.toString().split("|");
 			
 			Title titleToPlayer = ProxyServer.getInstance().createTitle()
 				.title(new ComponentBuilder( ChatColor.translateAlternateColorCodes('&',message[0]) ).create() );
@@ -46,7 +46,7 @@ public class GtitleCmd extends Command {
 			strb=null;
 			message=null;
 		} else {
-			arg0.sendMessage(new TextComponent("[Â§bGTitleÂ§f] No has escrito texto a enviar. Uso: /gt <titulo>//<subtitulo>."));
+			arg0.sendMessage(new TextComponent("[§bGTitle§f] No has escrito texto a enviar. Uso: /gt <titulo>//<subtitulo>."));
 		}
 	}
 }
