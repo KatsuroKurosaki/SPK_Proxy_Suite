@@ -2,4 +2,15 @@ name: SPK_Proxy_Suite
 main: com.katsunet.spkproxysuite.spigot.Main
 version: 2.0-alpha3
 author: Katsuro Kurosaki
-description: SPK Bungee Suite
+#description: SPK Bungee Suite
+#api-version: 1.15
+commands:
+    gc:
+      usage: /<command>
+#      description: Gives the Golden Apple
+#      permission: spk.manzana
+#      permission-message: No tienes permiso para obtener la SPKmanzana.
+#permissions:
+#    spk.manzana:
+#        description: Allows the user executing the command to get Golden Apple
+#        default: op
