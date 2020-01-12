@@ -115,6 +115,8 @@ public class Global {
 	
 	public static String getMinecraftVersion(int version){
 		switch(version){
+			case 575: return "1.15.1";
+			case 573: return "1.15";	
 			case 498: return "1.14.4";
 			case 490: return "1.14.3";
 			case 485: return "1.14.2";
