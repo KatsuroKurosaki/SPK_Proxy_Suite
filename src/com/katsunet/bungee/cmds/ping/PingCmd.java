@@ -17,24 +17,24 @@ public class PingCmd extends Command {
 		if (args.length == 0) {
 			if ((sender instanceof ProxiedPlayer)) {
 				ProxiedPlayer player = (ProxiedPlayer) sender;
-				sender.sendMessage(new TextComponent("[§bPING§f] PING: "+PingCmd.responseColor(player.getPing()) + player.getPing() + " ms"));
+				sender.sendMessage(new TextComponent("Ping: "+PingCmd.responseColor(player.getPing()) + player.getPing() + " ms"));
 			} else {
-				sender.sendMessage(new TextComponent("[§bPING§f] Console-tan no tiene ping"));
+				sender.sendMessage(new TextComponent("No ping for console."));
 			}
 		} else {
 			ProxiedPlayer player = ProxyServer.getInstance().getPlayer(args[0]);
 			if (player != null) {
-				sender.sendMessage(new TextComponent("[§bPING§f] PING de " + args[0] + ": " + PingCmd.responseColor(player.getPing()) + player.getPing() + " ms"));
+				sender.sendMessage(new TextComponent(args[0] + " ping: " + PingCmd.responseColor(player.getPing()) + player.getPing() + " ms"));
 			} else {
-				sender.sendMessage(new TextComponent("[§bPING§f] PING de " + args[0] + ": Desconectado"));
+				sender.sendMessage(new TextComponent(args[0] + ": Offline"));
 			}
 		}
 	}
 
 	public static ChatColor responseColor(int ping) {
-		if (ping < 370) {
+		if (ping < 200) {
 			return ChatColor.GREEN;
-		} else if (ping < 1100) {
+		} else if (ping < 500) {
 			return ChatColor.YELLOW;
 		} else {
 			return ChatColor.RED;
