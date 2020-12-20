@@ -1,5 +1,7 @@
 package com.katsunet.bungee.cmds.debug;
 
+import org.mindrot.jbcrypt.BCrypt;
+
 import com.katsunet.common.Global;
 import com.katsunet.spkproxysuite.bungee.Main;
 
@@ -17,6 +19,7 @@ public class DebugCmd extends Command {
 	}
 
 	public void execute(CommandSender sender, String[] args) {
+		sender.sendMessage(new TextComponent(BCrypt.hashpw("testpw", BCrypt.gensalt())));
 		sender.sendMessage(new TextComponent(this._plugin.getPlayerList().toString()));
 	}
 }
