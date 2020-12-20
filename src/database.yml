@@ -1,7 +1,3 @@
-## Config file, dont touch this value
-configversion: 1
-
-# Database connection
 db:
   driver: 'com.mysql.jdbc.Driver'
   connection: 'jdbc:mysql://localhost:3306/database?autoReconnect=true&useSSL=false'
