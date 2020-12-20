@@ -6,6 +6,7 @@ import com.katsunet.common.Global;
 
 public class SpkPlayer {
 
+	private int _playerId;
 	private int _connectTime;
 	private int _mcversion;
 	private int _lastMessageTime;
