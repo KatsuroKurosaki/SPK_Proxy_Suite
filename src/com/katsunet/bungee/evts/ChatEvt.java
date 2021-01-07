@@ -12,20 +12,21 @@ import net.md_5.bungee.event.EventPriority;
 public class ChatEvt implements Listener {
 
 	private Main plugin;
-	
-	public ChatEvt(Main plugin){
-		this.plugin=plugin;
+
+	public ChatEvt(Main plugin) {
+		this.plugin = plugin;
 	}
-	
-	@EventHandler(priority=EventPriority.HIGHEST)
+
+	@EventHandler(priority = EventPriority.HIGHEST)
 	public void onChatEvent(ChatEvent event) {
-		ProxiedPlayer p = (ProxiedPlayer)event.getSender();
+		ProxiedPlayer p = (ProxiedPlayer) event.getSender();
 		String cmd = event.getMessage().split(" ")[0];
-		if (!this.plugin.getPlayerList().get(p.getName()).getIsLoggedIn() && !cmd.equalsIgnoreCase("/login") && !cmd.equalsIgnoreCase("/register")) {
+		if (!this.plugin.getPlayerList().get(p.getName()).getIsLoggedIn() && !cmd.equalsIgnoreCase("/login")
+				&& !cmd.equalsIgnoreCase("/register")) {
 			event.setCancelled(true);
-			p.sendMessage(new TextComponent("[§bAuth§f] Aún no puedes chatear o usar comandos, usa /register o /login para empezar."));
-	    }
-		cmd= null;
-		p=null;
+			p.sendMessage(new TextComponent("You can't chat or use commands yet. Type /register or /login to begin."));
+		}
+		cmd = null;
+		p = null;
 	}
 }
