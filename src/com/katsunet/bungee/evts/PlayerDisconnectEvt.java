@@ -1,7 +1,5 @@
 package com.katsunet.bungee.evts;
 
-import com.katsunet.bungee.async.PlayerDisconnectAsync;
-import com.katsunet.common.Global;
 import com.katsunet.spkproxysuite.bungee.Main;
 
 import net.md_5.bungee.api.event.PlayerDisconnectEvent;
@@ -19,9 +17,9 @@ public class PlayerDisconnectEvt implements Listener {
 	@EventHandler
 	public void onPlayerDisconnectEvent(PlayerDisconnectEvent event) {
 		if(this._plugin.getPlayerList().containsKey(event.getPlayer().getName())){
-			if(this._plugin.getPlayerList().get(event.getPlayer().getName()).getIsLoggedIn()){
+			/*if(this._plugin.getPlayerList().get(event.getPlayer().getName()).getIsLoggedIn()){
 				this._plugin.getProxy().getScheduler().runAsync(this._plugin, new PlayerDisconnectAsync(this._plugin, event.getPlayer().getName(), this._plugin.getPlayerList().get(event.getPlayer().getName()),Global.getCurrentTimeSeconds()));
-			}
+			}*/
 			this._plugin.getPlayerList().remove(event.getPlayer().getName());
 		}
 	}

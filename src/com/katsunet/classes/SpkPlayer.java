@@ -17,6 +17,14 @@ public class SpkPlayer {
 	private int _loginAttempts;
 	private ArrayList<String> _bungeeGroupMember;
 
+	public int getPlayerId() {
+		return this._playerId;
+	}
+
+	public void setPlayerId(int playerId) {
+		this._playerId = playerId;
+	}
+
 	public int getConnectTime() {
 		return this._connectTime;
 	}
@@ -99,7 +107,7 @@ public class SpkPlayer {
 
 	@Override
 	public String toString() {
-		return "{" + "connectTime: " + this._connectTime + ", " + "mcversion: " + this._mcversion + ", "
+		return "ID: "+this._playerId+" {" + "connectTime: " + this._connectTime + ", " + "mcversion: " + this._mcversion + ", "
 				+ "lastMessageTime:" + this._lastMessageTime + ", " + "lastMsgSentFrom: " + this._lastMsgSentFrom + ", "
 				+ "lastHelpOpMsgTime: " + this._lastHelpopMsgTime + ", " + "isLoggedIn: " + this._isLoggedIn + ", "
 				+ "ipaddress: " + this._ipaddress + ", " + "loginAttempts: " + this._loginAttempts + ", "
