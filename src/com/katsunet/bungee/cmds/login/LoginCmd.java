@@ -1,4 +1,4 @@
-package com.katsunet.bungee.cmds.auth;
+package com.katsunet.bungee.cmds.login;
 
 import com.katsunet.bungee.async.LoginAsync;
 import com.katsunet.spkproxysuite.bungee.Main;
