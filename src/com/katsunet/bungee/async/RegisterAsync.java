@@ -7,7 +7,7 @@ import java.sql.Statement;
 
 import org.mindrot.jbcrypt.BCrypt;
 
-import com.katsunet.bungee.evts.custom.RegisterEvent;
+import com.katsunet.bungee.evts.custom.RegisterCustomEvent;
 import com.katsunet.common.Global;
 import com.katsunet.spkproxysuite.bungee.Main;
 
@@ -43,7 +43,7 @@ public class RegisterAsync implements Runnable {
 					rs.next();
 					if (rs.getString("email").equals(this.email) && !rs.getString("playername").equals(this.player.getName())) {
 						this.plugin.getProxy().getPluginManager().callEvent(
-							new RegisterEvent(
+							new RegisterCustomEvent(
 								false,
 								this.player,
 								"The provided email already exists on the server."
@@ -51,7 +51,7 @@ public class RegisterAsync implements Runnable {
 						);
 					} else {
 						this.plugin.getProxy().getPluginManager().callEvent(
-							new RegisterEvent(
+							new RegisterCustomEvent(
 								false,
 								this.player,
 								"You are already registered. Use /login <password> instead."
@@ -81,7 +81,7 @@ public class RegisterAsync implements Runnable {
 					key = keys.getInt(1);
 					ps.close();
 					this.plugin.getProxy().getPluginManager().callEvent(
-						new RegisterEvent(
+						new RegisterCustomEvent(
 							true,
 							this.player,
 							key
@@ -92,7 +92,7 @@ public class RegisterAsync implements Runnable {
 				ps.close();
 			} catch (SQLException e) {
 				this.plugin.getProxy().getPluginManager().callEvent(
-					new RegisterEvent(
+					new RegisterCustomEvent(
 						false,
 						this.player,
 						"Se ha producido un error al registrar tu cuenta. Contacta con el Admin."
@@ -105,7 +105,7 @@ public class RegisterAsync implements Runnable {
 						ps.close();
 					} catch (SQLException e) {
 						this.plugin.getProxy().getPluginManager().callEvent(
-							new RegisterEvent(
+							new RegisterCustomEvent(
 								false,
 								this.player,
 								"Se ha producido un error al registrar tu cuenta. Contacta con el Admin."
@@ -120,7 +120,7 @@ public class RegisterAsync implements Runnable {
 			this.plugin.getMysql().disconnect();
 		} else {
 			this.plugin.getProxy().getPluginManager().callEvent(
-				new RegisterEvent(
+				new RegisterCustomEvent(
 					false,
 					this.player,
 					"Se ha producido un error al registrar tu cuenta. Contacta con el Admin."

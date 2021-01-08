@@ -8,22 +8,22 @@ public class LoginCustomEvent extends Event {
 	private boolean success;
 	private ProxiedPlayer player;
 	private String msg;
-	
-	public LoginCustomEvent(boolean success, ProxiedPlayer player, String msg){
-		this.success=success;
+
+	public LoginCustomEvent(boolean success, ProxiedPlayer player, String msg) {
+		this.success = success;
 		this.player = player;
-		this.msg=msg;
+		this.msg = msg;
 	}
-	
-	public boolean getSuccess(){
+
+	public boolean getSuccess() {
 		return this.success;
 	}
-	
-	public ProxiedPlayer getPlayer(){
+
+	public ProxiedPlayer getPlayer() {
 		return this.player;
 	}
-	
-	public String getMsg(){
+
+	public String getMsg() {
 		return this.msg;
 	}
 }
