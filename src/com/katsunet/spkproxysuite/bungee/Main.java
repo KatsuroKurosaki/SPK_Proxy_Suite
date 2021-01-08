@@ -46,17 +46,18 @@ import com.katsunet.classes.SpkPlayer;
 import com.katsunet.common.BungeeYamlFile;
 import com.katsunet.common.Global;
 import com.katsunet.common.MySQLConn;
+import com.katsunet.common.TextFile;
 
 import net.md_5.bungee.api.plugin.Plugin;
 
 public class Main extends Plugin {
 	private BungeeYamlFile _bungeeCnf, _mainCnf, _dbCnf;
 	private MySQLConn _mysql;
-	private List<String> _noRecvList;
-	private List<String> _chatspyList;
-	private ConcurrentHashMap<String, BungeeGroup> _bungeeGroups;
 	private ConcurrentHashMap<String, SpkPlayer> _playerList;
+	private ConcurrentHashMap<String, BungeeGroup> _bungeeGroups;
+	private String _serverMotd;
 
+	
 	public BungeeYamlFile getMainCnf() {
 		return this._mainCnf;
 	}
@@ -68,32 +69,30 @@ public class Main extends Plugin {
 	public MySQLConn getMysql() {
 		return this._mysql;
 	}
-
-	public List<String> getNoRcvList() {
-		return this._noRecvList;
+	
+	public ConcurrentHashMap<String, SpkPlayer> getPlayerList() {
+		return this._playerList;
 	}
-
-	public List<String> getChatspyList() {
-		return this._chatspyList;
+	
+	public String getServerMotd() {
+		return this._serverMotd;
 	}
 
 	public ConcurrentHashMap<String, BungeeGroup> getBungeeGroups() {
 		return this._bungeeGroups;
 	}
 
-	public ConcurrentHashMap<String, SpkPlayer> getPlayerList() {
-		return this._playerList;
-	}
-
 	@Override
 	public void onEnable() {
 		// Database
 		this._dbCnf = new BungeeYamlFile(this, Global.DATABASE_CONFIG_FILE);
-		this._mysql = new MySQLConn(this._dbCnf.getYaml().getString(Global.CONFNODE_DB_DRIVER),
-				this._dbCnf.getYaml().getString(Global.CONFNODE_DB_CONN),
-				this._dbCnf.getYaml().getString(Global.CONFNODE_DB_USER),
-				this._dbCnf.getYaml().getString(Global.CONFNODE_DB_PASS));
-		if (this._mysql.connect(true)) {
+		this._mysql = new MySQLConn(
+			this._dbCnf.getYaml().getString(Global.CONFNODE_DB_DRIVER),
+			this._dbCnf.getYaml().getString(Global.CONFNODE_DB_CONN),
+			this._dbCnf.getYaml().getString(Global.CONFNODE_DB_USER),
+			this._dbCnf.getYaml().getString(Global.CONFNODE_DB_PASS)
+		);
+		if (this._mysql.connect(false)) {
 			this.getLogger().info("MySQL test connection worked.");
 			this._mysql.disconnect();
 		} else {
@@ -101,13 +100,19 @@ public class Main extends Plugin {
 		}
 
 		// BungeeCord config file
-		//this._bungeeCnf = new BungeeYamlFile(this, Global.BUNGEE_MAIN_CONFIG_FILE);
+		this._bungeeCnf = new BungeeYamlFile(this, Global.BUNGEECORD_CONFIG_FILE);
 
 		// Proxy Suite config file
-		this._mainCnf = new BungeeYamlFile(this, Global.BUNGEE_MAIN_PLUGIN_CONFIG_FILE);
+		this._mainCnf = new BungeeYamlFile(this, Global.PLUGIN_CONFIG_FILE);
+		
+		// MOTD text file
+		TextFile motd = new TextFile(this, Global.MOTD_CONFIG_FILE);
+		this._serverMotd=motd.readTextFile();
+		System.out.println("MOTD:\n"+this._serverMotd);
+		motd=null;
 
 		// Variable values
-		//this._playerList = new ConcurrentHashMap<String, SpkPlayer>();
+		this._playerList = new ConcurrentHashMap<String, SpkPlayer>();
 		//this._noRecvList = this._mainCnf.getYaml().getStringList(Global.CONFNODE_NORCVLST);
 		//this._chatspyList = this._mainCnf.getYaml().getStringList(Global.CONFNODE_CHATSPYLST);
 		//this._bungeeGroups = new ConcurrentHashMap<String, BungeeGroup>();
@@ -157,7 +162,7 @@ public class Main extends Plugin {
 		//this.getProxy().getPluginManager().registerCommand(this, new PlayerinfoCmd(this));
 
 		// Server MOTD
-		//this.getProxy().getPluginManager().registerCommand(this, new MotdCmd(this));
+		this.getProxy().getPluginManager().registerCommand(this, new MotdCmd(this));
 
 		// Permissions
 		//this.getProxy().getPluginManager().registerCommand(this, new BpexCmd(this));
@@ -176,22 +181,22 @@ public class Main extends Plugin {
 		//this.getProxy().getPluginManager().registerCommand(this, new MsgtoggleCmd(this));
 
 		// Auth Commands
-		//this.getProxy().getPluginManager().registerCommand(this, new RegisterCmd(this));
-		//this.getProxy().getPluginManager().registerCommand(this, new LoginCmd(this));
-		//this.getProxy().getPluginManager().registerCommand(this, new ChangePwCmd(this));
+		this.getProxy().getPluginManager().registerCommand(this, new RegisterCmd(this));
+		this.getProxy().getPluginManager().registerCommand(this, new LoginCmd(this));
+		this.getProxy().getPluginManager().registerCommand(this, new ChangePwCmd(this));
 
 		// Events
-		//this.getProxy().getPluginManager().registerListener(this, new ChatEvt(this));
+		this.getProxy().getPluginManager().registerListener(this, new ChatEvt(this));
 		//this.getProxy().getPluginManager().registerListener(this, new TabCompleteEvt(this));
-		//this.getProxy().getPluginManager().registerListener(this, new PostLoginEvt(this));
+		this.getProxy().getPluginManager().registerListener(this, new PostLoginEvt(this));
 		//this.getProxy().getPluginManager().registerListener(this, new PlayerDisconnectEvt(this));
-		//this.getProxy().getPluginManager().registerListener(this, new ProxyPingEvt(this));
+		this.getProxy().getPluginManager().registerListener(this, new ProxyPingEvt(this));
 		//this.getProxy().getPluginManager().registerListener(this, new PermissionCheckEvt(this));
 		//this.getProxy().getPluginManager().registerListener(this, new ServerKickEvt(this));
 
 		// Custom Events
 		//this.getProxy().getPluginManager().registerListener(this, new PostLoginCustomEvt());
-		//this.getProxy().getPluginManager().registerListener(this, new RegisterCustomEvt(this));
+		this.getProxy().getPluginManager().registerListener(this, new RegisterCustomEvt(this));
 		//this.getProxy().getPluginManager().registerListener(this, new LoginCustomEvt(this));
 		//this.getProxy().getPluginManager().registerListener(this, new ChangePasswordCustomEvt());
 		//this.getProxy().getPluginManager().registerListener(this, new PlayerinfoCustomEvt(this));

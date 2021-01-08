@@ -9,17 +9,20 @@ import net.md_5.bungee.api.plugin.Listener;
 import net.md_5.bungee.event.EventHandler;
 
 public class ProxyPingEvt implements Listener {
-	
+
 	private Main _plugin;
-	
-	public ProxyPingEvt(Main plugin){
-		this._plugin=plugin;
-		_plugin.getMainCnf().getYaml().getString("announcements.delay");
+
+	public ProxyPingEvt(Main plugin) {
+		this._plugin = plugin;
 	}
-	
+
 	@EventHandler
-	public void onProxyPingEvent(ProxyPingEvent e){
-		e.getResponse().setDescriptionComponent(new TextComponent(ChatColor.translateAlternateColorCodes('&',"&2S.&6P.&4K.")));
+	public void onProxyPingEvent(ProxyPingEvent e) {
+		e.getResponse().setDescriptionComponent(
+			new TextComponent(
+				ChatColor.translateAlternateColorCodes('&', this._plugin.getServerMotd())
+			)
+		);
 	}
 
 }
