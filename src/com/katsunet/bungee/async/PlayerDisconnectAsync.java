@@ -4,42 +4,41 @@ import java.sql.PreparedStatement;
 import java.sql.SQLException;
 
 import com.katsunet.classes.SpkPlayer;
+import com.katsunet.common.Global;
 import com.katsunet.spkproxysuite.bungee.Main;
 
-public class PlayerDisconnectAsync implements Runnable{
-	
+public class PlayerDisconnectAsync implements Runnable {
+
 	private Main plugin;
-	private String playername;
-	private SpkPlayer spk;
+	private SpkPlayer spkplayer;
 	private int tsdisconnect;
-	
-	public PlayerDisconnectAsync(Main plugin, String playername, SpkPlayer spk, int tsdisconnect){
-		this.plugin=plugin;
-		this.playername=playername;
-		this.spk=spk;
-		this.tsdisconnect=tsdisconnect;
+
+	public PlayerDisconnectAsync(Main plugin, SpkPlayer spkplayer) {
+		this.plugin = plugin;
+		this.spkplayer = spkplayer;
+		this.tsdisconnect = Global.getCurrentTimeSeconds();
 	}
 
 	@Override
 	public void run() {
-		if(this.plugin.getMysql().connect(true)){
-			PreparedStatement ps=null;
-			String sql = null;
-			
+		if (this.plugin.getMysql().connect(true)) {
+			PreparedStatement ps = null;
+
 			try {
-				sql = "INSERT INTO mc_players_log (playername, tsconnect, tsdisconnect, ipaddress, mcversion) VALUES (?,?,?,?,?);";
-				ps = this.plugin.getMysql().getConnection().prepareStatement(sql);
-				ps.setString(1, this.playername);
-				ps.setInt(2, this.spk.getConnectTime());
+				ps = this.plugin.getMysql().getConnection().prepareStatement(
+					"INSERT INTO mc_players_log (player_id, time_connect, time_disconnect, ip_address, mcversion) VALUES (?,?,?,INET_ATON(?),?);"
+				);
+				ps.setInt(1, this.spkplayer.getPlayerId());
+				ps.setInt(2, this.spkplayer.getConnectTime());
 				ps.setInt(3, this.tsdisconnect);
-				ps.setString(4, this.spk.getIpAddress());
-				ps.setInt(5, this.spk.getMcVersion());
+				ps.setString(4, this.spkplayer.getIpAddress());
+				ps.setInt(5, this.spkplayer.getMcVersion());
 				ps.executeUpdate();
 				ps.close();
 			} catch (SQLException e) {
 				e.printStackTrace();
 			} finally {
-				if(ps != null){
+				if (ps != null) {
 					try {
 						ps.close();
 					} catch (SQLException e) {
@@ -48,7 +47,7 @@ public class PlayerDisconnectAsync implements Runnable{
 					ps = null;
 				}
 			}
-			ps=null;
+			ps = null;
 			this.plugin.getMysql().disconnect();
 		}
 	}
