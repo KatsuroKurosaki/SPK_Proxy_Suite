@@ -27,18 +27,29 @@ public class PostLoginAsync implements Runnable {
 			String sql = null;
 
 			try {
-				sql = "SELECT id FROM mc_players WHERE playername = ?;";
+				sql = "SELECT playername FROM mc_players WHERE playername = ?;";
 				ps = this.plugin.getMysql().getConnection().prepareStatement(sql);
 				ps.setString(1, this.player.getName());
 				rs = ps.executeQuery();
 				if (rs.isBeforeFirst()) {
-					this.plugin.getProxy().getPluginManager().callEvent(
-						new PostLoginCustomEvent(
-							this.player,
-							"Welcome back " + this.player.getName() + ", sign-in typing: /login <password>",
-							false
-						)
-					);
+					rs.next();
+					if(this.player.getName().equals(rs.getString("playername"))) {
+						this.plugin.getProxy().getPluginManager().callEvent(
+							new PostLoginCustomEvent(
+								this.player,
+								"Welcome back " + this.player.getName() + ", sign-in typing: /login <your password>",
+								false
+							)
+						);
+					} else {
+						this.plugin.getProxy().getPluginManager().callEvent(
+							new PostLoginCustomEvent(
+								this.player,
+								"Your minecraft name '" + this.player.getName() + "' does not have the same letter case as the one registered '" + rs.getString("playername") + "'. Please, correct this.",
+								true
+							)
+						);
+					}
 				} else {
 					this.plugin.getProxy().getPluginManager().callEvent(
 						new PostLoginCustomEvent(
