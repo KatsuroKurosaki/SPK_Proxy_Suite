@@ -7,24 +7,24 @@ import net.md_5.bungee.api.event.TabCompleteEvent;
 import net.md_5.bungee.api.plugin.Listener;
 import net.md_5.bungee.event.EventHandler;
 
-public class TabCompleteEvt implements Listener {
+public class TabCompleteListener implements Listener {
 
 	private Main plugin;
 
-	public TabCompleteEvt(Main plugin) {
+	public TabCompleteListener(Main plugin) {
 		this.plugin = plugin;
 	}
 
 	@EventHandler
 	public void onTabComplete(TabCompleteEvent e) {
-		if(e.getSuggestions().isEmpty()){
+		if (e.getSuggestions().isEmpty()) {
 			String partialPlayerName = e.getCursor().toLowerCase();
-	
+
 			int lastSpaceIndex = partialPlayerName.lastIndexOf(' ');
 			if (lastSpaceIndex >= 0) {
 				partialPlayerName = partialPlayerName.substring(lastSpaceIndex + 1);
 			}
-	
+
 			for (ProxiedPlayer p : this.plugin.getProxy().getPlayers()) {
 				if (p.getName().toLowerCase().startsWith(partialPlayerName)) {
 					e.getSuggestions().add(p.getName());
