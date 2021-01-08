@@ -1,4 +1,4 @@
-package com.katsunet.bungee.cmds.auth;
+package com.katsunet.bungee.cmds.register;
 
 import com.katsunet.bungee.async.RegisterAsync;
 import com.katsunet.common.Global;
@@ -26,16 +26,15 @@ public class RegisterCmd extends Command {
 			} else if (arg1.length == 0) {
 				arg0.sendMessage(new TextComponent("Not enough arguments. Type: /register <password> <your email>"));
 			} else if (arg1.length == 1) {
-				arg0.sendMessage(new TextComponent(
-						"You forgot to type an email address. Type: /register <password> <your email>"));
+				arg0.sendMessage(new TextComponent("You forgot to type an email address. Type: /register <password> <your email>"));
 			} else if (!Global.emailValidate(arg1[1])) {
 				arg0.sendMessage(new TextComponent("The provided email '" + arg1[1] + "' is not valid."));
 			} else {
 				arg0.sendMessage(new TextComponent("Registering account, please wait..."));
-				ProxiedPlayer p = (ProxiedPlayer) arg0;
-				this.plugin.getProxy().getScheduler().runAsync(this.plugin,
-						new RegisterAsync(this.plugin, p, arg1[0], arg1[1]));
-				p = null;
+				this.plugin.getProxy().getScheduler().runAsync(
+					this.plugin,
+					new RegisterAsync(this.plugin, (ProxiedPlayer) arg0, arg1[0], arg1[1])
+				);
 			}
 		} else {
 			arg0.sendMessage(new TextComponent("Command not available on console."));
