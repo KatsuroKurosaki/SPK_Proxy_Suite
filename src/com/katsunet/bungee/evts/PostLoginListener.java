@@ -9,10 +9,10 @@ import net.md_5.bungee.api.event.PostLoginEvent;
 import net.md_5.bungee.api.plugin.Listener;
 import net.md_5.bungee.event.EventHandler;
 
-public class PostLoginEvt implements Listener {
+public class PostLoginListener implements Listener {
 	private Main _plugin;
 
-	public PostLoginEvt(Main plugin) {
+	public PostLoginListener(Main plugin) {
 		this._plugin = plugin;
 	}
 
