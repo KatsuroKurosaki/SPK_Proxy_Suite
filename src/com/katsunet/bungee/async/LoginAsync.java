@@ -31,46 +31,74 @@ public class LoginAsync implements Runnable {
 			ResultSet rs = null;
 
 			try {
-				ps = this.plugin.getMysql().getConnection()
-						.prepareStatement("SELECT playerpassword FROM mc_players WHERE playername = ?;");
+				ps = this.plugin.getMysql().getConnection().prepareStatement(
+					"SELECT id, playerpassword FROM mc_players WHERE playername = ?;"
+				);
 				ps.setString(1, this.player.getName());
 				rs = ps.executeQuery();
 				if (rs.isBeforeFirst()) {
 					rs.next();
 					if (BCrypt.checkpw(this.password, rs.getString("playerpassword"))) {
+						int key = rs.getInt("id");
 						ps.close();
 
 						String ipaddress = Global.extractIpAddress(this.player.getSocketAddress().toString());
 						ps = this.plugin.getMysql().getConnection().prepareStatement(
-								"UPDATE mc_players SET connections = connections+1, lastlogin = UNIX_TIMESTAMP(NOW()), lastip = INET_ATON(?) WHERE playername = ?;");
+							"UPDATE mc_players SET connections = connections+1, lastlogin = UNIX_TIMESTAMP(NOW()), lastip = INET_ATON(?) WHERE playername = ?;"
+						);
 						ps.setString(1, ipaddress);
 						ps.setString(2, player.getName());
 						ps.executeUpdate();
 						ps.close();
-						this.plugin.getProxy().getPluginManager()
-								.callEvent(new LoginCustomEvent(true, this.player, ""));
+						this.plugin.getProxy().getPluginManager().callEvent(
+							new LoginCustomEvent(
+								true,
+								this.player,
+								key
+							)
+						);
 					} else {
 						this.plugin.getPlayerList().get(this.player.getName()).increaseLoginAttempt();
-						this.plugin.getProxy().getPluginManager().callEvent(new LoginCustomEvent(false, this.player,
-								"La contraseña que has escrito no es correcta."));
+						this.plugin.getProxy().getPluginManager().callEvent(
+							new LoginCustomEvent(
+								false,
+								this.player,
+								"Your password is wrong."
+							)
+						);
 					}
 				} else {
-					this.plugin.getProxy().getPluginManager().callEvent(new LoginCustomEvent(false, this.player,
-							"No tienes contraseña aun, creala con: /register <contraseña> <email>"));
+					this.plugin.getProxy().getPluginManager().callEvent(
+						new LoginCustomEvent(
+							false,
+							this.player,
+							"You don't have a password yet. Sign up typing /register <password> <your email>"
+						)
+					);
 				}
 				rs.close();
 				ps.close();
 			} catch (SQLException e) {
-				this.plugin.getProxy().getPluginManager().callEvent(new LoginCustomEvent(false, this.player,
-						"Se ha producido un error al conectar tu cuenta. Contacta con el Admin."));
+				this.plugin.getProxy().getPluginManager().callEvent(
+					new LoginCustomEvent(
+						false,
+						this.player,
+						"Error triggered when logging in. Contact the administrator."
+					)
+				);
 				e.printStackTrace();
 			} finally {
 				if (ps != null) {
 					try {
 						ps.close();
 					} catch (SQLException e) {
-						this.plugin.getProxy().getPluginManager().callEvent(new LoginCustomEvent(false, this.player,
-								"Se ha producido un error al conectar tu cuenta. Contacta con el Admin."));
+						this.plugin.getProxy().getPluginManager().callEvent(
+							new LoginCustomEvent(
+								false,
+								this.player,
+								"Error triggered when logging in. Contact the administrator."
+							)
+						);
 						e.printStackTrace();
 					}
 					ps = null;
@@ -80,8 +108,13 @@ public class LoginAsync implements Runnable {
 			rs = null;
 			this.plugin.getMysql().disconnect();
 		} else {
-			this.plugin.getProxy().getPluginManager().callEvent(new LoginCustomEvent(false, this.player,
-					"[§bAuth§f] Se ha producido un error al conectar tu cuenta. Contacta con el Admin."));
+			this.plugin.getProxy().getPluginManager().callEvent(
+				new LoginCustomEvent(
+					false,
+					this.player,
+					"Error triggered when logging in. Contact the administrator."
+				)
+			);
 		}
 	}
 }

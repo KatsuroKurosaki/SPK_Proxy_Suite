@@ -20,22 +20,17 @@ public class LoginCustomListener implements Listener {
 	public void onLogin(LoginCustomEvent e) {
 		if (e.getSuccess()) {
 			this._plugin.getPlayerList().get(e.getPlayer().getName()).setLoggedIn(true);
-			e.getPlayer()
-					.sendMessage(new TextComponent("[§bAuth§f] Te has conectado correctamente! Entrando al lobby..."));
-			if (ProxyServer.getInstance().getServers()
-					.containsKey(this._plugin.getMainCnf().getYaml().getString(Global.CONFNODE_LOBBY_SERVER))) {
-				e.getPlayer().connect(ProxyServer.getInstance()
-						.getServerInfo(this._plugin.getMainCnf().getYaml().getString(Global.CONFNODE_LOBBY_SERVER)));
+			e.getPlayer().sendMessage(new TextComponent("Logged-in successfully. Redirecting to the lobby..."));
+			if (ProxyServer.getInstance().getServers().containsKey(this._plugin.getMainCnf().getYaml().getString(Global.CONFNODE_LOBBY_SERVER))) {
+				e.getPlayer().connect(ProxyServer.getInstance().getServerInfo(this._plugin.getMainCnf().getYaml().getString(Global.CONFNODE_LOBBY_SERVER)));
 			} else {
-				e.getPlayer().sendMessage(
-						new TextComponent("[§bAuth§f] Error: No puedo encontrar el lobby. Contacta al Admin."));
+				e.getPlayer().sendMessage(new TextComponent("Error: Lobby server not found. Contact with the admin"));
 			}
 		} else {
-			if (this._plugin.getMainCnf().getYaml().getInt(Global.CONFNODE_LOGIN_ATTEMPS) > this._plugin.getPlayerList()
-					.get(e.getPlayer().getName()).getLoginAttemps()) {
-				e.getPlayer().sendMessage(new TextComponent("[§bAuth§f] Error al conectarte: " + e.getMsg()));
+			if (this._plugin.getMainCnf().getYaml().getInt(Global.CONFNODE_LOGIN_ATTEMPS) > this._plugin.getPlayerList().get(e.getPlayer().getName()).getLoginAttemps()) {
+				e.getPlayer().sendMessage(new TextComponent("Error logging-in: " + e.getMsg()));
 			} else {
-				e.getPlayer().disconnect(new TextComponent("Has superado el límite de intentos de conexión."));
+				e.getPlayer().disconnect(new TextComponent("You have reached the maximum login attempts."));
 			}
 		}
 	}

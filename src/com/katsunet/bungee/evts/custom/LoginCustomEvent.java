@@ -8,11 +8,18 @@ public class LoginCustomEvent extends Event {
 	private boolean success;
 	private ProxiedPlayer player;
 	private String msg;
+	private int userId;
 
 	public LoginCustomEvent(boolean success, ProxiedPlayer player, String msg) {
 		this.success = success;
 		this.player = player;
 		this.msg = msg;
+	}
+
+	public LoginCustomEvent(boolean success, ProxiedPlayer player, int key) {
+		this.success = success;
+		this.player = player;
+		this.userId = key;
 	}
 
 	public boolean getSuccess() {
@@ -25,5 +32,9 @@ public class LoginCustomEvent extends Event {
 
 	public String getMsg() {
 		return this.msg;
+	}
+
+	public int getUserId() {
+		return this.userId;
 	}
 }

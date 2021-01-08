@@ -95,7 +95,7 @@ public class RegisterAsync implements Runnable {
 					new RegisterCustomEvent(
 						false,
 						this.player,
-						"Se ha producido un error al registrar tu cuenta. Contacta con el Admin."
+						"Error triggered when registering. Contact the administrator."
 					)
 				);
 				e.printStackTrace();
@@ -108,7 +108,7 @@ public class RegisterAsync implements Runnable {
 							new RegisterCustomEvent(
 								false,
 								this.player,
-								"Se ha producido un error al registrar tu cuenta. Contacta con el Admin."
+								"Error triggered when registering. Contact the administrator."
 							)
 						);
 						e.printStackTrace();
@@ -123,7 +123,7 @@ public class RegisterAsync implements Runnable {
 				new RegisterCustomEvent(
 					false,
 					this.player,
-					"Se ha producido un error al registrar tu cuenta. Contacta con el Admin."
+					"Error triggered when registering. Contact the administrator."
 				)
 			);
 		}
