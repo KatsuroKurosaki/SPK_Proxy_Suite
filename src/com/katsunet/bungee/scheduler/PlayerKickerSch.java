@@ -10,17 +10,19 @@ import net.md_5.bungee.api.chat.TextComponent;
 public class PlayerKickerSch implements Runnable {
 
 	private Main plugin;
-	
-	public PlayerKickerSch(Main plugin){
+
+	public PlayerKickerSch(Main plugin) {
 		this.plugin = plugin;
 	}
-	
+
 	@Override
-	public void run(){
-		for (String playername : this.plugin.getPlayerList().keySet()){
+	public void run() {
+		for (String playername : this.plugin.getPlayerList().keySet()) {
 			SpkPlayer spk = this.plugin.getPlayerList().get(playername);
-			if(!spk.getIsLoggedIn() && Global.getCurrentTimeSeconds()> spk.getConnectTime()+this.plugin.getMainCnf().getYaml().getInt(Global.CONFNODE_LOGIN_GRACE_TIME)){
-				ProxyServer.getInstance().getPlayer(playername).disconnect(new TextComponent("Has tardado mas de "+this.plugin.getMainCnf().getYaml().getInt(Global.CONFNODE_LOGIN_GRACE_TIME)+" segundos en conectarte."));
+			if (!spk.getIsLoggedIn() && Global.getCurrentTimeSeconds() > spk.getConnectTime() + this.plugin.getMainCnf().getYaml().getInt(Global.CONFNODE_LOGIN_GRACE_TIME)) {
+				ProxyServer.getInstance().getPlayer(playername).disconnect(
+					new TextComponent("Has tardado mas de " + this.plugin.getMainCnf().getYaml().getInt(Global.CONFNODE_LOGIN_GRACE_TIME) + " segundos en conectarte.")
+				);
 			}
 		}
 	}
