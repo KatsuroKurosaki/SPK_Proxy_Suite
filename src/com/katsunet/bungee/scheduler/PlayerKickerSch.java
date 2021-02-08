@@ -21,7 +21,9 @@ public class PlayerKickerSch implements Runnable {
 			SpkPlayer spk = this.plugin.getPlayerList().get(playername);
 			if (!spk.getIsLoggedIn() && Global.getCurrentTimeSeconds() > spk.getConnectTime() + this.plugin.getMainCnf().getYaml().getInt(Global.CONFNODE_LOGIN_GRACE_TIME)) {
 				ProxyServer.getInstance().getPlayer(playername).disconnect(
-					new TextComponent("Has tardado mas de " + this.plugin.getMainCnf().getYaml().getInt(Global.CONFNODE_LOGIN_GRACE_TIME) + " segundos en conectarte.")
+					new TextComponent(
+						"It took more than " + this.plugin.getMainCnf().getYaml().getInt(Global.CONFNODE_LOGIN_GRACE_TIME) + " seconds to sign-in."
+					)
 				);
 			}
 		}
