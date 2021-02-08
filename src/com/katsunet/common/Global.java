@@ -79,8 +79,18 @@ public class Global {
 		return "0.0.0.0";
 	}
 
+	// Returns current UNIX timestamp with seconds granularity
 	public static int getCurrentTimeSeconds() {
 		return (int) (System.currentTimeMillis() / 1000L);
+	}
+	
+	public static String secondsToDhms(int seconds) {
+		int sec = seconds % 60;
+		int minutes = seconds % 3600 / 60;
+		int hours = seconds % 86400 / 3600;
+		int days = seconds / 86400;
+		
+		return String.format("%01d days %02d:%02d:%02d",days, hours, minutes, sec);
 	}
 
 	/*

@@ -41,8 +41,10 @@ public class PostLoginListener implements Listener {
 			this._plugin,
 			new PostLoginAsync(
 				this._plugin,
-				event.getPlayer()
+				event.getPlayer(),
+				spkp
 			)
 		);
+		spkp = null;
 	}
 }

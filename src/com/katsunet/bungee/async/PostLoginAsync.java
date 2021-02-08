@@ -5,6 +5,8 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 
 import com.katsunet.bungee.evts.custom.PostLoginCustomEvent;
+import com.katsunet.classes.SpkPlayer;
+import com.katsunet.common.Global;
 import com.katsunet.spkproxysuite.bungee.Main;
 
 import net.md_5.bungee.api.connection.ProxiedPlayer;
@@ -13,10 +15,12 @@ public class PostLoginAsync implements Runnable {
 
 	private Main plugin;
 	private ProxiedPlayer player;
+	private SpkPlayer spkplayer;
 
-	public PostLoginAsync(Main plugin, ProxiedPlayer player) {
+	public PostLoginAsync(Main plugin, ProxiedPlayer player, SpkPlayer spkplayer) {
 		this.plugin = plugin;
 		this.player = player;
+		this.spkplayer = spkplayer;
 	}
 
 	@Override
@@ -24,11 +28,77 @@ public class PostLoginAsync implements Runnable {
 		if (this.plugin.getMysql().connect(true)) {
 			PreparedStatement ps = null;
 			ResultSet rs = null;
-			String sql = null;
 
 			try {
-				sql = "SELECT playername FROM mc_players WHERE playername = ?;";
-				ps = this.plugin.getMysql().getConnection().prepareStatement(sql);
+				// Check if IP is banned
+				ps = this.plugin.getMysql().getConnection().prepareStatement(
+					"SELECT banned_reason, banned_until - UNIX_TIMESTAMP(NOW()) AS ban_remain\n" + 
+					"FROM mc_ipban\n" + 
+					"WHERE banned_ip = INET_ATON(?) AND (banned_until IS NULL OR banned_until > UNIX_TIMESTAMP(NOW())) AND unbanned = b'0';"
+				);
+				ps.setString(1, this.spkplayer.getIpAddress());
+				rs = ps.executeQuery();
+				if (rs.isBeforeFirst()) {
+					rs.next();
+					if(rs.getInt("ban_remain") == 0) {
+						this.plugin.getProxy().getPluginManager().callEvent(
+							new PostLoginCustomEvent(
+								this.player,
+								"Your IP address is banned forever.\nReason: " + rs.getString("banned_reason"),
+								true
+							)
+						);
+					} else {
+						this.plugin.getProxy().getPluginManager().callEvent(
+							new PostLoginCustomEvent(
+								this.player,
+								"Your IP address is banned for " + Global.secondsToDhms(rs.getInt("ban_remain")) + ".\nReason: " + rs.getString("banned_reason"),
+								true
+							)
+						);
+					}
+				}
+				rs.close();
+				ps.close();
+				
+				// Check if user is banned
+				ps = this.plugin.getMysql().getConnection().prepareStatement(
+					"SELECT banned_reason, banned_until - UNIX_TIMESTAMP(NOW()) as ban_remain\n" + 
+					"FROM mc_playerban\n" + 
+					"INNER JOIN mc_players ON mc_players.id = mc_playerban.player_id\n" + 
+					"WHERE mc_players.playername = ? AND (banned_until IS NULL OR banned_until > UNIX_TIMESTAMP(NOW())) AND unbanned = b'0';"
+				);
+				ps.setString(1, this.player.getName());
+				rs = ps.executeQuery();
+				if (rs.isBeforeFirst()) {
+					rs.next();
+					if(rs.getInt("ban_remain") == 0) {
+						this.plugin.getProxy().getPluginManager().callEvent(
+							new PostLoginCustomEvent(
+								this.player,
+								"Your account is banned forever.\nReason: " + rs.getString("banned_reason"),
+								true
+							)
+						);
+					} else {
+						this.plugin.getProxy().getPluginManager().callEvent(
+							new PostLoginCustomEvent(
+								this.player,
+								"Your account is banned for " + Global.secondsToDhms(rs.getInt("ban_remain")) + ".\nReason: " + rs.getString("banned_reason"),
+								true
+							)
+						);
+					}
+				}
+				rs.close();
+				ps.close();
+				
+				// Search for player
+				ps = this.plugin.getMysql().getConnection().prepareStatement(
+					"SELECT playername\n" +
+					"FROM mc_players\n" +
+					"WHERE playername = ?;"	
+				);
 				ps.setString(1, this.player.getName());
 				rs = ps.executeQuery();
 				if (rs.isBeforeFirst()) {
