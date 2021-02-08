@@ -11,26 +11,22 @@ import net.md_5.bungee.api.plugin.Command;
 public class ChatspyCmd extends Command {
 
 	private Main plugin;
-	
+
 	public ChatspyCmd(Main plugin) {
 		super("chatspy", Global.PERM_CHATSPY);
-		this.plugin=plugin;
+		this.plugin = plugin;
 	}
 
 	@Override
 	public void execute(CommandSender arg0, String[] arg1) {
-		if(arg0 instanceof ProxiedPlayer){
-			if(!this.plugin.getChatspyList().contains(arg0.getName())){
-				this.plugin.getChatspyList().add(arg0.getName());
-				arg0.sendMessage(new TextComponent("[§bSpy§f] Has activado el ChatSpy"));
+		if (arg0 instanceof ProxiedPlayer) {
+			if (!this.plugin.getPlayerList().get(arg0.getName()).getChatspyEnable()) {
+				this.plugin.getPlayerList().get(arg0.getName()).setChatspyEnable(true);
+				arg0.sendMessage(new TextComponent("ChatSpy has been enabled."));
 			} else {
-				this.plugin.getChatspyList().remove(arg0.getName());
-				arg0.sendMessage(new TextComponent("[§bSpy§f] Has desactivado el ChatSpy"));
+				this.plugin.getPlayerList().get(arg0.getName()).setChatspyEnable(false);
+				arg0.sendMessage(new TextComponent("ChatSpy has been disabled."));
 			}
-			this.plugin.getMainCnf().getYaml().set(Global.CONFNODE_CHATSPYLST, this.plugin.getChatspyList());
-			this.plugin.getMainCnf().saveYamlFile();
-		} else {
-			arg0.sendMessage(new TextComponent("Console-tan no puede espiar mensajes privados."));
 		}
 	}
 }
