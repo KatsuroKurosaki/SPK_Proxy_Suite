@@ -13,8 +13,8 @@ public class SpkPlayer {
 	private String _lastMsgSentFrom;
 	private int _lastHelpopMsgTime;
 	private boolean _isLoggedIn;
-	private String _ipaddress;
 	private int _loginAttempts;
+	private String _ipaddress;
 	private ArrayList<String> _bungeeGroupMember;
 
 	public int getPlayerId() {
@@ -29,52 +29,56 @@ public class SpkPlayer {
 		return this._connectTime;
 	}
 
-	public int getLastMessageTime() {
-		return _lastMessageTime;
-	}
-
 	public int getMcVersion() {
 		return this._mcversion;
 	}
 
-	public String getLastMsgSentTo() {
-		return this._lastMsgSentFrom;
-	}
-
-	public int getLastHelpopMsgTime() {
-		return this._lastHelpopMsgTime;
-	}
-
-	public boolean getIsLoggedIn() {
-		return this._isLoggedIn;
-	}
-
-	public String getIpAddress() {
-		return this._ipaddress;
+	public int getLastMessageTime() {
+		return _lastMessageTime;
 	}
 
 	public void setLastMsgNow() {
 		this._lastMessageTime = Global.getCurrentTimeSeconds();
 	}
 
+	public String getLastMsgSentFrom() {
+		return this._lastMsgSentFrom;
+	}
+
 	public void setLastMsgSentFrom(String name) {
 		this._lastMsgSentFrom = name;
 	}
 
-	public void setLastHelpOpNow() {
-		this._lastHelpopMsgTime = Global.getCurrentTimeSeconds();
+	public int getLastHelpopMsgTime() {
+		return this._lastHelpopMsgTime;
 	}
 
 	public void setLastHelpOpTime(int time) {
 		this._lastHelpopMsgTime = time;
 	}
 
+	public void setLastHelpOpNow() {
+		this._lastHelpopMsgTime = Global.getCurrentTimeSeconds();
+	}
+
+	public boolean getIsLoggedIn() {
+		return this._isLoggedIn;
+	}
+
 	public void setLoggedIn(boolean value) {
 		this._isLoggedIn = value;
 	}
 
+	public int getLoginAttemps() {
+		return this._loginAttempts;
+	}
+
 	public void increaseLoginAttempt() {
 		this._loginAttempts++;
+	}
+
+	public String getIpAddress() {
+		return this._ipaddress;
 	}
 
 	public void addBungeeGroup(String group) {
@@ -89,17 +93,13 @@ public class SpkPlayer {
 		return this._bungeeGroupMember;
 	}
 
-	public int getLoginAttemps() {
-		return this._loginAttempts;
-	}
-
 	public SpkPlayer(int mcversion, String ipaddress) {
+		this._connectTime = Global.getCurrentTimeSeconds();
 		this._mcversion = mcversion;
 		this._lastMessageTime = 0;
 		this._lastHelpopMsgTime = 0;
-		this._loginAttempts = 0;
-		this._connectTime = Global.getCurrentTimeSeconds();
 		this._isLoggedIn = false;
+		this._loginAttempts = 0;
 		this._ipaddress = ipaddress;
 		this._bungeeGroupMember = new ArrayList<String>();
 		this._bungeeGroupMember.add(Global.BUNGEE_DEFAULT_GROUP_NAME);
@@ -107,10 +107,15 @@ public class SpkPlayer {
 
 	@Override
 	public String toString() {
-		return "ID: "+this._playerId+" {" + "connectTime: " + this._connectTime + ", " + "mcversion: " + this._mcversion + ", "
-				+ "lastMessageTime:" + this._lastMessageTime + ", " + "lastMsgSentFrom: " + this._lastMsgSentFrom + ", "
-				+ "lastHelpOpMsgTime: " + this._lastHelpopMsgTime + ", " + "isLoggedIn: " + this._isLoggedIn + ", "
-				+ "ipaddress: " + this._ipaddress + ", " + "loginAttempts: " + this._loginAttempts + ", "
-				+ "_bungeeGroupMember: " + this._bungeeGroupMember + "}";
+		return	" _playerId: " + this._playerId +
+				" _connectTime: " + this._connectTime +
+				" _mcversion: " + this._mcversion +
+				" _lastMessageTime:" + this._lastMessageTime +
+				" _lastMsgSentFrom: " + this._lastMsgSentFrom +
+				" _lastHelpopMsgTime: " + this._lastHelpopMsgTime +
+				" _isLoggedIn: " + this._isLoggedIn +
+				" _loginAttempts: " + this._loginAttempts + 
+				" _ipaddress: " + this._ipaddress +
+				" _bungeeGroupMember: " + this._bungeeGroupMember;
 	}
 }
