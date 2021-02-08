@@ -16,6 +16,8 @@ public class SpkPlayer {
 	private int _loginAttempts;
 	private String _ipaddress;
 	private ArrayList<String> _bungeeGroupMember;
+	private boolean _msgDisable;
+	private boolean _chatspyEnable;
 
 	public int getPlayerId() {
 		return this._playerId;
@@ -92,6 +94,22 @@ public class SpkPlayer {
 	public ArrayList<String> getBungeeGroups() {
 		return this._bungeeGroupMember;
 	}
+	
+	public void setMsgDisable(boolean value) {
+		this._msgDisable = value;
+	}
+	
+	public boolean getMsgDisable() {
+		return this._msgDisable;
+	}
+	
+	public void setChatspyEnable(boolean value) {
+		this._chatspyEnable = value;
+	}
+	
+	public boolean getChatspyEnable() {
+		return this._chatspyEnable;
+	}
 
 	public SpkPlayer(int mcversion, String ipaddress) {
 		this._connectTime = Global.getCurrentTimeSeconds();
@@ -103,6 +121,8 @@ public class SpkPlayer {
 		this._ipaddress = ipaddress;
 		this._bungeeGroupMember = new ArrayList<String>();
 		this._bungeeGroupMember.add(Global.BUNGEE_DEFAULT_GROUP_NAME);
+		this._msgDisable = false;
+		this._chatspyEnable = false;
 	}
 
 	@Override
@@ -116,6 +136,8 @@ public class SpkPlayer {
 				" _isLoggedIn: " + this._isLoggedIn +
 				" _loginAttempts: " + this._loginAttempts + 
 				" _ipaddress: " + this._ipaddress +
-				" _bungeeGroupMember: " + this._bungeeGroupMember;
+				" _bungeeGroupMember: " + this._bungeeGroupMember +
+				" _msgDisable: " + this._msgDisable +
+				" _chatspyEnable: " + this._chatspyEnable;
 	}
 }
