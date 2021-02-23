@@ -41,30 +41,31 @@ public class MessageCmd extends Command {
 					if (!spkreceive.getIsLoggedIn()) {
 						arg0.sendMessage(
 								new TextComponent("The player is typing their password. Wait until they finish."));
-					} else if (spkreceive.getMsgDisable() && !(arg0.hasPermission(Global.PERM_MSGTOGGLEIGN)
-							&& receiver.hasPermission(Global.PERM_MSGTOGGLEIGN))) {
-						arg0.sendMessage(new TextComponent("Player " + arg1[0] + " has private messages disabled."));
-					} else if (spksend.getMsgDisable() && !(arg0.hasPermission(Global.PERM_MSGTOGGLEIGN)
-							&& receiver.hasPermission(Global.PERM_MSGTOGGLEIGN))) {
-						arg0.sendMessage(new TextComponent(
-								"You have private messages disabled. Enable them typing /msgtoggle."));
-					} else if (spksend.getLastMessageTime()
-							+ this.plugin.getMainCnf().getYaml().getInt(Global.CONFNODE_MSGCOOLDOWN) > Global
-									.getCurrentTimeSeconds()
-							|| !arg0.hasPermission(Global.PERM_COOLDOWNIGN)) {
-						arg0.sendMessage(new TextComponent("Wait "
-								+ (spksend.getLastMessageTime()
-										+ this.plugin.getMainCnf().getYaml().getInt(Global.CONFNODE_MSGCOOLDOWN)
-										- Global.getCurrentTimeSeconds())
-								+ " seconds, there is a message sending cooldown."));
+					} else if (spkreceive.getMsgDisable() && !(arg0.hasPermission(Global.PERM_MSGTOGGLEIGN) && receiver.hasPermission(Global.PERM_MSGTOGGLEIGN))) {
+						arg0.sendMessage(
+							new TextComponent(
+								"Player " + arg1[0] + " has private messages disabled."
+							)
+						);
+					} else if (spksend.getMsgDisable() && !(arg0.hasPermission(Global.PERM_MSGTOGGLEIGN) && receiver.hasPermission(Global.PERM_MSGTOGGLEIGN))) {
+						arg0.sendMessage(
+							new TextComponent(
+								"You have private messages disabled. Enable them typing /msgtoggle."
+							)
+						);
+					} else if (spksend.getLastMessageTime() + this.plugin.getMainCnf().getYaml().getInt(Global.CONFNODE_MSGCOOLDOWN) > Global.getCurrentTimeSeconds() && !arg0.hasPermission(Global.PERM_COOLDOWNIGN)) {
+						arg0.sendMessage(
+							new TextComponent(
+								"Wait " + (spksend.getLastMessageTime() + this.plugin.getMainCnf().getYaml().getInt(Global.CONFNODE_MSGCOOLDOWN) - Global.getCurrentTimeSeconds()) + " seconds, there is a message sending cooldown."
+							)
+						);
 					} else {
 						StringBuilder strb = new StringBuilder();
 						for (int i = 1; i < arg1.length; i++) {
 							strb.append(" " + arg1[i]);
 						}
 
-						this.plugin.getProxy().getPlayer(arg1[0])
-								.sendMessage(new TextComponent("[" + arg0.getName() + " -> Me]" + strb.toString()));
+						this.plugin.getProxy().getPlayer(arg1[0]).sendMessage(new TextComponent("[" + arg0.getName() + " -> Me]" + strb.toString()));
 						arg0.sendMessage(new TextComponent("[Me -> " + arg1[0] + "]" + strb.toString()));
 
 						for (ProxiedPlayer player : ProxyServer.getInstance().getPlayers()) {
@@ -76,12 +77,10 @@ public class MessageCmd extends Command {
 										"[" + arg0.getName() + " -> " + arg1[0] + "]" + strb.toString()));
 							}
 						}
-
 						strb = null;
+						
 						spksend.setLastMsgNow();
-
-						this.plugin.getPlayerList().get(arg1[0]).setLastMsgSentFrom(arg0.getName());
-
+						spkreceive.setLastMsgSentFrom(arg0.getName());
 					}
 					spksend = null;
 					spkreceive = null;

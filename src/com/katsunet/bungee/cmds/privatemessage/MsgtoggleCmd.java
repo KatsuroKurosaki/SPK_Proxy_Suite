@@ -21,11 +21,11 @@ public class MsgtoggleCmd extends Command {
 	public void execute(CommandSender arg0, String[] arg1) {
 		if (arg0 instanceof ProxiedPlayer) {
 			if (this._plugin.getPlayerList().get(arg0.getName()).getMsgDisable()) {
-				this._plugin.getPlayerList().get(arg0.getName()).setMsgDisable(true);
-				arg0.sendMessage(new TextComponent("Private messages disabled. You can only chat with staff members."));
-			} else {
 				this._plugin.getPlayerList().get(arg0.getName()).setMsgDisable(false);
 				arg0.sendMessage(new TextComponent("Private messages enabled. You can chat with everybody."));
+			} else {
+				this._plugin.getPlayerList().get(arg0.getName()).setMsgDisable(true);
+				arg0.sendMessage(new TextComponent("Private messages disabled. You can only chat with staff members."));
 			}
 		}
 	}
