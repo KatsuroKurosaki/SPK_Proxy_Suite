@@ -22,7 +22,7 @@ public class PlayerKickerSch implements Runnable {
 			if (!spk.getIsLoggedIn() && Global.getCurrentTimeSeconds() > spk.getConnectTime() + this.plugin.getMainCnf().getYaml().getInt(Global.CONFNODE_LOGIN_GRACE_TIME)) {
 				ProxyServer.getInstance().getPlayer(playername).disconnect(
 					new TextComponent(
-						"It took more than " + this.plugin.getMainCnf().getYaml().getInt(Global.CONFNODE_LOGIN_GRACE_TIME) + " seconds to sign-in."
+						"You did not sign-in in less than " + this.plugin.getMainCnf().getYaml().getInt(Global.CONFNODE_LOGIN_GRACE_TIME) + " seconds."
 					)
 				);
 			}
