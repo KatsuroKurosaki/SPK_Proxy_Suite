@@ -21,6 +21,8 @@ public class LoginCustomListener implements Listener {
 		if (e.getSuccess()) {
 			this._plugin.getPlayerList().get(e.getPlayer().getName()).setLoggedIn(true);
 			this._plugin.getPlayerList().get(e.getPlayer().getName()).setPlayerId(e.getUserId());
+			this._plugin.getPlayerList().get(e.getPlayer().getName()).setChatspyEnable(e.getChatspyEnable());
+			this._plugin.getPlayerList().get(e.getPlayer().getName()).setMsgDisable(e.getMsgDisable());
 			e.getPlayer().sendMessage(new TextComponent("Logged-in successfully. Redirecting to the lobby..."));
 			if (ProxyServer.getInstance().getServers().containsKey(this._plugin.getMainCnf().getYaml().getString(Global.CONFNODE_LOBBY_SERVER))) {
 				e.getPlayer().connect(ProxyServer.getInstance().getServerInfo(this._plugin.getMainCnf().getYaml().getString(Global.CONFNODE_LOBBY_SERVER)));

@@ -32,29 +32,33 @@ public class LoginAsync implements Runnable {
 
 			try {
 				ps = this.plugin.getMysql().getConnection().prepareStatement(
-					"SELECT id, playerpassword FROM mc_players WHERE playername = ?;"
+					"SELECT id, msg_disable, chatspy_enable, playerpassword FROM mc_players WHERE playername = ?;"
 				);
 				ps.setString(1, this.player.getName());
 				rs = ps.executeQuery();
 				if (rs.isBeforeFirst()) {
 					rs.next();
 					if (BCrypt.checkpw(this.password, rs.getString("playerpassword"))) {
-						int key = rs.getInt("id");
+						int playerId = rs.getInt("id");
+						boolean msgDisable = rs.getBoolean("msg_disable");
+						boolean chatspyEnable = rs.getBoolean("chatspy_enable");
 						ps.close();
 
 						String ipaddress = Global.extractIpAddress(this.player.getSocketAddress().toString());
 						ps = this.plugin.getMysql().getConnection().prepareStatement(
-							"UPDATE mc_players SET connections = connections+1, lastlogin = UNIX_TIMESTAMP(NOW()), lastip = INET_ATON(?) WHERE playername = ?;"
+							"UPDATE mc_players SET connections = connections+1, lastlogin = UNIX_TIMESTAMP(NOW()), lastip = INET_ATON(?) WHERE id = ?;"
 						);
 						ps.setString(1, ipaddress);
-						ps.setString(2, player.getName());
+						ps.setInt(2, playerId);
 						ps.executeUpdate();
 						ps.close();
 						this.plugin.getProxy().getPluginManager().callEvent(
 							new LoginCustomEvent(
 								true,
 								this.player,
-								key
+								playerId,
+								msgDisable,
+								chatspyEnable
 							)
 						);
 					} else {
