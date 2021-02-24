@@ -1,5 +1,6 @@
 package com.katsunet.bungee.cmds.privatemessage;
 
+import com.katsunet.bungee.async.MessagingAsync;
 import com.katsunet.common.Global;
 import com.katsunet.spkproxysuite.bungee.Main;
 
@@ -23,9 +24,25 @@ public class ChatspyCmd extends Command {
 			if (!this.plugin.getPlayerList().get(arg0.getName()).getChatspyEnable()) {
 				this.plugin.getPlayerList().get(arg0.getName()).setChatspyEnable(true);
 				arg0.sendMessage(new TextComponent("ChatSpy has been enabled."));
+				this.plugin.getProxy().getScheduler().runAsync(
+						this.plugin,
+						new MessagingAsync(
+							this.plugin,
+							this.plugin.getPlayerList().get(arg0.getName()),
+							MessagingAsync.CHATSPY
+						)
+					);
 			} else {
 				this.plugin.getPlayerList().get(arg0.getName()).setChatspyEnable(false);
 				arg0.sendMessage(new TextComponent("ChatSpy has been disabled."));
+				this.plugin.getProxy().getScheduler().runAsync(
+						this.plugin,
+						new MessagingAsync(
+							this.plugin,
+							this.plugin.getPlayerList().get(arg0.getName()),
+							MessagingAsync.CHATSPY
+						)
+					);
 			}
 		}
 	}
