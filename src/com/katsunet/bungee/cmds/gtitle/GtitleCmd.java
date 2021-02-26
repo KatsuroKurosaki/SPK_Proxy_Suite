@@ -1,5 +1,6 @@
 package com.katsunet.bungee.cmds.gtitle;
 
+import java.util.regex.Pattern;
 import com.katsunet.common.Global;
 import com.katsunet.spkproxysuite.bungee.Main;
 
@@ -28,13 +29,18 @@ public class GtitleCmd extends Command {
 			for (int i = 0; i < arg1.length; i++) {
 				strb.append(" " + arg1[i]);
 			}
-			String[] message = strb.toString().split("|");
+			String[] message = strb.toString().split(Pattern.quote("|"));
 
-			Title titleToPlayer = ProxyServer.getInstance().createTitle()
-					.title(new ComponentBuilder(ChatColor.translateAlternateColorCodes('&', message[0])).create());
+			Title titleToPlayer = ProxyServer.getInstance().createTitle().title(
+				new ComponentBuilder(
+					ChatColor.translateAlternateColorCodes('&', message[0])).create()
+				);
 			if (message.length > 1) {
 				titleToPlayer.subTitle(
-						new ComponentBuilder(ChatColor.translateAlternateColorCodes('&', message[1])).create());
+					new ComponentBuilder(
+						ChatColor.translateAlternateColorCodes('&', message[1])
+					).create()
+				);
 			}
 			titleToPlayer.fadeIn(this._plugin.getMainCnf().getYaml().getInt(Global.CONFNODE_GTITLE_FADE) * 20)
 					.stay(this._plugin.getMainCnf().getYaml().getInt(Global.CONFNODE_GTITLE_STAY) * 20)
@@ -48,7 +54,7 @@ public class GtitleCmd extends Command {
 			message = null;
 		} else {
 			arg0.sendMessage(
-					new TextComponent("[�bGTitle�f] No has escrito texto a enviar. Uso: /gt <titulo>//<subtitulo>."));
+					new TextComponent("You did not write the message to send. Use /gt <title>|<subtitle>."));
 		}
 	}
 }
