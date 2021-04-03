@@ -23,29 +23,27 @@ public class PlayerinfoCustomEvt implements Listener {
 	
 	@EventHandler
 	public void onLogin(PlayerinfoCustomEvent e){
-		if(e.getSuccess()){
+	  if(e.getSuccess()){
 			ProxiedPlayer player = ProxyServer.getInstance().getPlayer(e.getPlayername());
-			e.getSender().sendMessage(new TextComponent("§b***** §fDATOS DE "+e.getPlayername()+" §b*****"));
-			e.getSender().sendMessage(new TextComponent("§bE-mail: §f"+e.getEmail()));
-			e.getSender().sendMessage(new TextComponent("§bRango: §f"+e.getRank()));
-			e.getSender().sendMessage(new TextComponent("§bCaducidad rango: §f"+e.getRankUntil()+" (UTC)"));
+			e.getSender().sendMessage(new TextComponent("***** PLAYER INFO "+e.getPlayername()+" *****"));
+			e.getSender().sendMessage(new TextComponent("Player UUID: "+e.getPlayerUuid()));
 			if (player != null) {
-				e.getSender().sendMessage(new TextComponent("§bEstado: "+ChatColor.GREEN+"ONLINE §f("+LocalTime.MIN.plusSeconds( Global.getCurrentTimeSeconds() - this._plugin.getPlayerList().get(e.getPlayername()).getConnectTime() )+")"));
-				e.getSender().sendMessage(new TextComponent("§bVersión: §f"+Global.getMinecraftVersion(this._plugin.getPlayerList().get(e.getPlayername()).getMcVersion())));
-				e.getSender().sendMessage(new TextComponent("§bModalidad: §f"+player.getServer().getInfo().getName()));
-				e.getSender().sendMessage(new TextComponent("§bPING: "+PingCmd.responseColor(player.getPing()) + player.getPing() + " ms"));
-				e.getSender().sendMessage(new TextComponent("§bIP: §f"+this._plugin.getPlayerList().get(e.getPlayername()).getIpAddress()));
+				e.getSender().sendMessage(new TextComponent("Status: "+ChatColor.GREEN+"ONLINE "+ChatColor.RESET+"("+LocalTime.MIN.plusSeconds( Global.getCurrentTimeSeconds() - this._plugin.getPlayerList().get(e.getPlayername()).getConnectTime() )+")"));
+				e.getSender().sendMessage(new TextComponent("Version: "+Global.getMinecraftVersion(this._plugin.getPlayerList().get(e.getPlayername()).getMcVersion())));
+				e.getSender().sendMessage(new TextComponent("Server: "+player.getServer().getInfo().getName()));
+				e.getSender().sendMessage(new TextComponent("Ping: "+PingCmd.responseColor(player.getPing()) + player.getPing() + " ms"));
+				e.getSender().sendMessage(new TextComponent("IP: "+this._plugin.getPlayerList().get(e.getPlayername()).getIpAddress()));
 			} else {
-				e.getSender().sendMessage(new TextComponent("§bEstado: "+ChatColor.RED+"OFFLINE"));
-				e.getSender().sendMessage(new TextComponent("§bÚltima conexión: §f"+e.getLastLogin()+" (UTC)"));
-				e.getSender().sendMessage(new TextComponent("§bÚltima IP: §f"+e.getLastIp()));
+				e.getSender().sendMessage(new TextComponent("Status: "+ChatColor.RED+"OFFLINE"));
+				e.getSender().sendMessage(new TextComponent("Last login: "+e.getLastLogin()+" (UTC)"));
+				e.getSender().sendMessage(new TextComponent("Last IP: "+e.getLastIp()));
 			}
-			e.getSender().sendMessage(new TextComponent("§bConexiones: §f"+e.getConnections()));
-			e.getSender().sendMessage(new TextComponent("§bFecha registro: §f"+e.getRegisterDate()+" (UTC)"));
-			e.getSender().sendMessage(new TextComponent("§b***** §fDATOS DE "+e.getPlayername()+" §b*****"));
+			e.getSender().sendMessage(new TextComponent("Connections: "+e.getConnections()));
+			e.getSender().sendMessage(new TextComponent("Register date: "+e.getRegisterDate()+" (UTC)"));
+			e.getSender().sendMessage(new TextComponent("***** PLAYER INFO "+e.getPlayername()+" *****"));
 			player=null;
 		} else {
-			e.getSender().sendMessage(new TextComponent("[§bPlayerInfo§f] "+e.getMessage()));
+			e.getSender().sendMessage(new TextComponent("[PlayerInfo] "+e.getMessage()));
 		}
 	}
 }

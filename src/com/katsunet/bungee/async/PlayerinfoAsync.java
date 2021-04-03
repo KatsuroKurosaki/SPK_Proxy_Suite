@@ -26,14 +26,13 @@ public class PlayerinfoAsync implements Runnable{
 		if(this.plugin.getMysql().connect(true)){
 			PreparedStatement ps=null;
 			ResultSet rs = null;
-			String sql = null;
 			
 			try {
-				sql = "SELECT mc_players.email, mc_ranks.rank, DATE_FORMAT(mc_players.rankuntil,'%H:%i:%s %d/%m/%Y') as rankuntil, mc_players.connections, DATE_FORMAT(mc_players.registerdate,'%H:%i:%s %d/%m/%Y') as registerdate, DATE_FORMAT(mc_players.lastlogin,'%H:%i:%s %d/%m/%Y') as lastlogin, mc_players.lastip "
-					+ "FROM mc_players "
-					+ "INNER JOIN mc_ranks ON mc_ranks.id = mc_players.rankid "
-					+ "WHERE mc_players.playername = ?;";
-				ps = this.plugin.getMysql().getConnection().prepareStatement(sql);
+				ps = this.plugin.getMysql().getConnection().prepareStatement(
+				    "SELECT playeruuid, playername, connections, DATE_FORMAT(registerdate,'%H:%i:%s %d/%m/%Y') AS registerdate, DATE_FORMAT(FROM_UNIXTIME(lastlogin),'%H:%i:%s %d/%m/%Y') AS lastlogin, INET_NTOA(lastip) AS lastip "+
+	                "FROM mc_players "+
+	                "WHERE mc_players.playername = ?;"
+				);
 				ps.setString(1, this.playername);
 				rs = ps.executeQuery();
 				if (rs.isBeforeFirst() ) {
@@ -42,10 +41,8 @@ public class PlayerinfoAsync implements Runnable{
 						new PlayerinfoCustomEvent(
 							true,
 							this.sender,
-							this.playername,
-							rs.getString("email"),
-							rs.getString("rank"),
-							rs.getString("rankuntil"),
+							rs.getString("playername"),
+							rs.getString("playeruuid"),
 							rs.getInt("connections"),
 							rs.getString("registerdate"),
 							rs.getString("lastlogin"),
@@ -53,19 +50,37 @@ public class PlayerinfoAsync implements Runnable{
 						)
 					);
 				}else{
-					this.plugin.getProxy().getPluginManager().callEvent(new PlayerinfoCustomEvent(false,"No se han encontrado datos de "+this.playername+".", this.sender));
+				  this.plugin.getProxy().getPluginManager().callEvent(
+		                new PlayerinfoCustomEvent(
+		                    false,
+		                    this.sender,
+		                    "No data was found for player: "+this.playername
+		                )
+		            );
 				}
 				rs.close();
 				ps.close();
 			} catch (SQLException e) {
-				this.plugin.getProxy().getPluginManager().callEvent(new PlayerinfoCustomEvent(false,"Se ha producido un error al consultar datos. Contacta con el Admin.", this.sender));
+			  this.plugin.getProxy().getPluginManager().callEvent(
+	                new PlayerinfoCustomEvent(
+	                    false,
+	                    this.sender,
+	                    "Error triggered while searching info. Try again or contact the admin."
+	                )
+	            );
 				e.printStackTrace();
 			} finally {
 				if(ps != null){
 					try {
 						ps.close();
 					} catch (SQLException e) {
-						this.plugin.getProxy().getPluginManager().callEvent(new PlayerinfoCustomEvent(false,"Se ha producido un error al consultar datos. Contacta con el Admin.", this.sender));
+					  this.plugin.getProxy().getPluginManager().callEvent(
+			                new PlayerinfoCustomEvent(
+			                    false,
+			                    this.sender,
+			                    "Error triggered while searching info. Try again or contact the admin."
+			                )
+			            );
 						e.printStackTrace();
 					}
 					ps = null;
@@ -75,7 +90,13 @@ public class PlayerinfoAsync implements Runnable{
 			rs=null;
 			this.plugin.getMysql().disconnect();
 		} else {
-			this.plugin.getProxy().getPluginManager().callEvent(new PlayerinfoCustomEvent(false,"Se ha producido un error al consultar datos. Contacta con el Admin.", this.sender));
+			this.plugin.getProxy().getPluginManager().callEvent(
+			    new PlayerinfoCustomEvent(
+			        false,
+			        this.sender,
+			        "Error triggered while searching info. Try again or contact the admin."
+			    )
+			);
 		}
 	}
 }
