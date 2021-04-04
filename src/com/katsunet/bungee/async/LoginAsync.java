@@ -56,7 +56,6 @@ public class LoginAsync implements Runnable {
 							new LoginCustomEvent(
 								true,
 								this.player,
-								playerId,
 								msgDisable,
 								chatspyEnable
 							)

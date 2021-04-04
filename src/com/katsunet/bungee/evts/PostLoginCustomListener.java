@@ -14,6 +14,9 @@ public class PostLoginCustomListener implements Listener {
 			e.getPlayer().disconnect(new TextComponent(e.getMsg()));
 		} else {
 			e.getPlayer().sendMessage(new TextComponent(e.getMsg()));
+			if(e.getPlayerId() != 0) {
+			  e.getPlugin().getPlayerList().get(e.getPlayer().getName()).setPlayerId(e.getPlayerId());
+			}
 		}
 	}
 }

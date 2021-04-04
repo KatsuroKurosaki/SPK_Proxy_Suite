@@ -95,7 +95,7 @@ public class PostLoginAsync implements Runnable {
 				
 				// Search for player
 				ps = this.plugin.getMysql().getConnection().prepareStatement(
-					"SELECT playername\n" +
+					"SELECT id, playername\n" +
 					"FROM mc_players\n" +
 					"WHERE playername = ?;"	
 				);
@@ -108,7 +108,9 @@ public class PostLoginAsync implements Runnable {
 							new PostLoginCustomEvent(
 								this.player,
 								"Welcome back " + this.player.getName() + ", sign-in typing: /login <your password>",
-								false
+								false,
+								rs.getInt("id"),
+								this.plugin
 							)
 						);
 					} else {

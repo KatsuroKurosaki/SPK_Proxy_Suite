@@ -8,7 +8,6 @@ public class LoginCustomEvent extends Event {
 	private boolean success;
 	private ProxiedPlayer player;
 	private String msg;
-	private int userId;
 	private boolean msgDisable;
 	private boolean chatspyEnable;
 
@@ -18,10 +17,9 @@ public class LoginCustomEvent extends Event {
 		this.msg = msg;
 	}
 
-	public LoginCustomEvent(boolean success, ProxiedPlayer player, int userId, boolean msgDisable, boolean chatspyEnable) {
+	public LoginCustomEvent(boolean success, ProxiedPlayer player, boolean msgDisable, boolean chatspyEnable) {
 		this.success = success;
 		this.player = player;
-		this.userId = userId;
 		this.msgDisable = msgDisable;
 		this.chatspyEnable = chatspyEnable;
 	}
@@ -36,10 +34,6 @@ public class LoginCustomEvent extends Event {
 
 	public String getMsg() {
 		return this.msg;
-	}
-
-	public int getUserId() {
-		return this.userId;
 	}
 	
 	public boolean getMsgDisable() {

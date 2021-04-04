@@ -20,7 +20,6 @@ public class LoginCustomListener implements Listener {
 	public void onLogin(LoginCustomEvent e) {
 		if (e.getSuccess()) {
 			this._plugin.getPlayerList().get(e.getPlayer().getName()).setLoggedIn(true);
-			this._plugin.getPlayerList().get(e.getPlayer().getName()).setPlayerId(e.getUserId());
 			this._plugin.getPlayerList().get(e.getPlayer().getName()).setChatspyEnable(e.getChatspyEnable());
 			this._plugin.getPlayerList().get(e.getPlayer().getName()).setMsgDisable(e.getMsgDisable());
 			e.getPlayer().sendMessage(new TextComponent("Logged-in successfully. Redirecting to the lobby..."));

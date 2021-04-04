@@ -114,13 +114,14 @@ public class SpkPlayer {
 	public SpkPlayer(int mcversion, String ipaddress) {
 		this._connectTime = Global.getCurrentTimeSeconds();
 		this._mcversion = mcversion;
+		this._playerId = 0;
 		this._lastMessageTime = 0;
 		this._lastHelpopMsgTime = 0;
 		this._isLoggedIn = false;
 		this._loginAttempts = 0;
 		this._ipaddress = ipaddress;
-		this._bungeeGroupMember = new ArrayList<String>();
-		this._bungeeGroupMember.add(Global.BUNGEE_DEFAULT_GROUP_NAME);
+		//this._bungeeGroupMember = new ArrayList<String>();
+		//this._bungeeGroupMember.add(Global.BUNGEE_DEFAULT_GROUP_NAME);
 		this._msgDisable = false;
 		this._chatspyEnable = false;
 	}
