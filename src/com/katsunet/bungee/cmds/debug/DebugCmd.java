@@ -12,7 +12,7 @@ public class DebugCmd extends Command {
 	private Main _plugin;
 
 	public DebugCmd(Main plugin) {
-		super("debug", Global.PERM_DEBUGGER);
+		super("dump", Global.PERM_DEBUGGER);
 		this._plugin = plugin;
 	}
 
